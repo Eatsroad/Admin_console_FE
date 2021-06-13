@@ -1,5 +1,11 @@
 import React from 'react';
-import { ContentContainer, SummryTitle, SummuryButton, SummuryContainer } from './styles';
+import { 
+  ContentContainer,
+  SummryTitle, 
+  SummuryButton, 
+  SummuryContainer, 
+  Test
+} from './styles';
 
 const Content:React.FC = () => {
   return (
@@ -11,7 +17,7 @@ const Content:React.FC = () => {
         </SummryTitle>
         <SummuryButton>지금 바로 시작하기</SummuryButton>
       </SummuryContainer>
-
+      <Test>asdfasdfa</Test>
     </ContentContainer>
   );
 };

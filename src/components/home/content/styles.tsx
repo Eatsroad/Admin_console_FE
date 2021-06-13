@@ -5,7 +5,7 @@ export const ContentContainer = styled.div`
   height: 100%;
 `;
 export const SummuryContainer = styled.div`
-  height: 300px;
+  height: 800px;
 
   display: flex;
   flex-direction: column;
@@ -28,4 +28,14 @@ export const SummuryButton = styled.button`
   font-weight: bold;
   font-size: 16px;
   background-color: ${({ theme }) => theme.colors.logoColor};
+`;
+export const Test = styled.h1`
+`;
+export const FirstContentsContainer = styled.div`
+  height: 800px;
+  background-color: ${({ theme }) => theme.colors.footerBackgroundColor};
+`;
+export const FirstContentTitle = styled.div`
+`;
+export const FirstContentSubTitle = styled.div`
 `;

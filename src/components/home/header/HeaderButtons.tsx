@@ -1,15 +1,15 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { RouteButton } from '../../common/buttons';
+import MoveToConsoleButton from './MoveToConsoleButton';
 import { HeaderButton, HeaderButtonsContainer } from './styles';
 
 const HeaderButtons: React.FC = () => {
-  const history = useHistory();
-  const isLoggin = false;
+  const isLoggin = localStorage.getItem('accessToken');
 
   const buttons = [
     {
       name: "회원가입",
-      route: "/signin",
+      route: "/signup",
     },
     {
       name: "로그인",
@@ -21,10 +21,12 @@ const HeaderButtons: React.FC = () => {
       {
         !isLoggin ? 
           buttons.map((button) => (
-            <HeaderButton onClick={() => history.push(button.route)}>{button.name}</HeaderButton>
+            <HeaderButton key={button.name} buttonName={button.name}>
+              <RouteButton route={button.route} title={button.name}/>
+            </HeaderButton>
           ))
         :
-        <HeaderButton onClick={() => history.push("/console")}>콘솔로 이동</HeaderButton>
+        <MoveToConsoleButton/>
       }
     </HeaderButtonsContainer>
   );

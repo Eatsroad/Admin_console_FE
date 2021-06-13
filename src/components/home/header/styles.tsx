@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-
+interface HeaderButtonProps {
+  buttonName: string;
+}
 export const HeaderContainer = styled.div`
   position: fixed;
   top: 0px;
@@ -11,7 +13,7 @@ export const HeaderContainer = styled.div`
   background-color: white;
 `;
 export const HeaderWrapper = styled.div`
-  max-width: 1440px;
+  max-width: ${({ theme }) => theme.maxWidth};
   height: 100%;
 
   display: flex;
@@ -30,8 +32,24 @@ export const HeaderLogoButton = styled.button`
 `;
 
 export const HeaderButtonsContainer = styled.div`
+  display: flex;
+`;
+export const HeaderButton = styled.div`
+  
+  ${(props: HeaderButtonProps) => props.buttonName === "로그인" ? 
+    `
+    button {
+      font-size: 18px;
+      margin-left: 10px;
+    }`
+    : 
+    "16px"
+  };
   
 `;
-export const HeaderButton = styled.button`
-  
+export const MoveToConsoleButtonContainer = styled.div`
+`;
+export const UserName = styled.div`
+`;
+export const Button = styled.button`
 `;

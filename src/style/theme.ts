@@ -10,7 +10,7 @@ const colors = {
   logoColor: "#0016bc",
   footerBackgroundColor: "#f7f8ff",
 }
-const maxWidth = "1440px";
+const maxWidth = "1024px";
 const theme = {
   colors,
   fontSize,
