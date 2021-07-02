@@ -70,7 +70,7 @@ const SigninForm: React.FC = () => {
           console.log(response.data);
           localStorage.setItem("accessToken", response.data.accessToken);
           localStorage.setItem("userName", response.data.name);
-          history.replace("/");
+          history.replace("/console");
         }
       } catch (e) {
         setErrState(true);
