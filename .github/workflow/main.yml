@@ -1,0 +1,48 @@
+name: CD
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  build:
+    name: build and upload to s3
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_S3_REGION }}
+
+      - name: Install packages
+        run: yarn install
+      
+      - name: build
+        run: yarn build
+
+      - name: compress files for deploy
+        run: zip -r eatsroad-front-homepage.zip ./build
+
+      - name: upload to s3
+        run: aws s3 cp eatsroad-front-homepage.zip s3://${{ secrets.AWS_S3_BUCKET }}
+
+  deploy:
+    needs: build
+    name: deploy to ec2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_S3_REGION }}
+      - name: deploy
+        run: aws deploy create-deployment --application-name eatsroad-hompage --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name EatsRoadHomePageDeploygroup --s3-location bucket=${{ secrets.AWS_S3_BUCKET }},bundleType=zip,key=eatsroad-front-homepage.zip --region ${{ secrets.AWS_S3_REGION }} --file-exists-behavior OVERWRITE
