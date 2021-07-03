@@ -13,8 +13,13 @@ export interface UserSigninResponse extends AxiosResponse {
   role: string;
   accessToken: string;
   refreshToken: string;
+  stores: StorePreviewData[];
 }
 
 export interface LoginState {
   user: UserSigninData;
+}
+export interface StorePreviewData {
+  name: string;
+  store_id: number;
 }
