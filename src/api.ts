@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { UserInfoWithUserIdData, UserInfoWithUserIdResponse } from "./components/common/type";
 import { UserSigninData, UserSigninResponse } from "./components/signin/type";
 import { UserSignupdata, UserSignupResponse } from "./components/signup/type";
 
@@ -19,4 +20,14 @@ export const userApi = {
     const result = await api.post("user/signin", data);
     return result;
   },
+  getUserInfoWithUserId: async (
+    data: UserInfoWithUserIdData
+  ): Promise<AxiosResponse<UserInfoWithUserIdResponse>> => {
+    const result = await api.get(`user/${data.userId}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  } 
 }

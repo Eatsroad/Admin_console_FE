@@ -6,6 +6,8 @@ interface ButtonProp {
 }
 
 export const Container = styled.div`
+  position: fixed;
+  top: 50px;
   width: 150px;
 `;
 export const Wapper = styled.div`
@@ -20,4 +22,8 @@ export const Button = styled.button`
 
   font-size: 16px;
   background-color: ${(props: ButtonProp) => props.index === props.state ? "gray" : ""};
+  color: ${(props: ButtonProp) => props.index === props.state ? "white" : "black"};
+`;
+
+export const SelectStoreDropDownContainer = styled.div`
 `;

@@ -6,7 +6,7 @@ export interface UserSigninData {
 }
 
 export interface UserSigninResponse extends AxiosResponse {
-  userId: number;
+  user_id: number;
   name: string;
   email: string;
   createdAt: string;
