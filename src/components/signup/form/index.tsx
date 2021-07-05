@@ -94,7 +94,10 @@ const SignupForm: React.FC = () => {
           }
           const signinResponse: AxiosResponse<UserSigninResponse> = await userApi.signin(signinData);
           if (signinResponse.status === StatusCodes.CREATED) {
-
+            localStorage.setItem("accessToken", signinResponse.data.accessToken);
+            localStorage.setItem("userName", signinResponse.data.name);
+            localStorage.setItem("userId", signinResponse.data.user_id.toString());
+            history.replace(`/store`);
           }
         }
       } catch (e) {
@@ -144,7 +147,7 @@ const SignupForm: React.FC = () => {
           onClick={onClick}
         />
         <GotoSignupPageButton>
-          <RouteButton route={"/signup"} title={"회원이 아니신가요?"}/>
+          <RouteButton route={"/signin"} title={"이미 회원이신가요?"}/>
         </GotoSignupPageButton>
       </ButtonsContainer>
     </SigninFormContainer>

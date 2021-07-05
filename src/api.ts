@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { UserInfoWithUserIdData, UserInfoWithUserIdResponse } from "./components/common/type";
+import { resourceLimits } from "worker_threads";
+import { CreateStoreData, CreateStoreResponse, UserInfoWithUserIdData, UserInfoWithUserIdResponse } from "./components/common/type";
 import { UserSigninData, UserSigninResponse } from "./components/signin/type";
 import { UserSignupdata, UserSignupResponse } from "./components/signup/type";
 
@@ -30,4 +31,17 @@ export const userApi = {
     });
     return result;
   } 
+}
+
+export const stoerAPI = {
+  createStore: async (
+    data: CreateStoreData
+  ): Promise<AxiosResponse<CreateStoreResponse>> => {
+    const result = await api.post("/store", {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }, data
+    });
+    return result;
+  }
 }

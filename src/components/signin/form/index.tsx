@@ -67,11 +67,10 @@ const SigninForm: React.FC = () => {
         const response: AxiosResponse<UserSigninResponse> = await userApi.signin(data);
   
         if (response.status === StatusCodes.CREATED) {
-          console.log(response.data);
           localStorage.setItem("accessToken", response.data.accessToken);
           localStorage.setItem("userName", response.data.name);
           localStorage.setItem("userId", response.data.user_id.toString());
-          history.replace("/console/menu");
+          history.replace("/store");
         }
       } catch (e) {
         setErrState(true);

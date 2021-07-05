@@ -10,3 +10,17 @@ export interface UserInfoWithUserIdResponse  {
   name: string;
   stores: StorePreviewInfo[];
 }
+
+export interface CreateStoreData {
+  name: string;
+  address: string;
+  phone_number: string;
+  tables: number;
+}
+export interface CreateStoreResponse {
+  store_id: number;
+  name: string;
+  address: string;
+  phone_number: string;
+  tables: number;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Input, RequiredInputContainer, RequiredMessege } from './styles';
 interface Props {
   placeholder: string;
-  value: string;
+  value: any;
   messege: string[];
   state: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

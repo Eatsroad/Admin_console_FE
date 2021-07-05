@@ -12,7 +12,7 @@ import {
 import { ConsoleSubRouter, Container, Content } from './styles';
 import { AxiosResponse } from 'axios';
 import { StatusCodes } from "http-status-codes";
-import SelectStore from '../../components/console/sidebar/SelectStore';
+
 
 const ConsolePage = (): JSX.Element => {
   const token = localStorage.getItem("accessToken");
@@ -43,12 +43,6 @@ const ConsolePage = (): JSX.Element => {
     <Container>
       <ConsoleHeader/>
       <Content>
-        
-        <SelectStore
-          setStore={setStoreId}
-          userData={userData}
-          storeId={storeId}
-        />
         <ConsoleSideBar
           setStore={setStoreId}
           userData={userData}

@@ -14,11 +14,11 @@ const SigninButton: React.FC<Props> = ({
   return (
     <SigninButtonContainer >
       <Button onClick={onClick} signinState={signinState}>
-        로그인
+        회원가입
       </Button>
       { errState ? 
         <SigninErrorMessege>
-          존재하지 않는 이메일이거나 비밀번호가 일치하지 않습니다
+          이미 존재하는 이메일입니다.
         </SigninErrorMessege>
         :<></>
       }
