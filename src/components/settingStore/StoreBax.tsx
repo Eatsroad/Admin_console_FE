@@ -10,7 +10,8 @@ const StoreBox = ({storeName, storeId}: Props): JSX.Element => {
   const history = useHistory();
 
   const onClick = () => {
-    history.push(`/store/${storeId}`);
+    console.log(storeId);
+    history.push(`/console/${storeId}`);
   }
   return (
     <StoreBoxContainer onClick={onClick}>

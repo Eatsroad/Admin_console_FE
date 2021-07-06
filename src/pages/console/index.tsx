@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
-import { userApi } from '../../api';
-import { StorePreviewInfo, UserInfoWithUserIdData, UserInfoWithUserIdResponse } from '../../components/common/type';
+import { useParams } from 'react-router-dom';
+import { storeAPI } from '../../api';
 import { 
   ConsoleCategory,
   ConsoleHeader,
@@ -12,49 +12,47 @@ import {
 import { ConsoleSubRouter, Container, Content } from './styles';
 import { AxiosResponse } from 'axios';
 import { StatusCodes } from "http-status-codes";
+import { CreateStoreResponse } from '../../components/common/type';
 
+const SwitchComponent = (index: number, storeId: string): JSX.Element => {
+  if (index === 0) return <ConsoleMenu storeId={storeId}/>
+  if (index === 1) return <ConsoleCategory/>
+  if (index === 2) return <ConsoleOptionGroup/>
+  return <></>
+}
 
 const ConsolePage = (): JSX.Element => {
-  const token = localStorage.getItem("accessToken");
-  const userId = localStorage.getItem("userId")!;
-  const history = useHistory();
-  const [storeId, setStoreId] = useState<number>(0);
-  const [userData, setUserData] = useState<StorePreviewInfo[]>([]);
+  const { store_id } = useParams<any>();
+  const [storeName, setStoreName] = useState<string>("");
+  const [com, setCom] = useState<number>(0);
 
-  const getUserInfo = async () => {
-    console.log(userId);
+  const getStoreInfo = async () => {
     try {
-      const data: UserInfoWithUserIdData= { userId: userId };
+      const result: AxiosResponse<CreateStoreResponse> = await storeAPI.getStoreInfo(store_id);
 
-      const response: AxiosResponse<UserInfoWithUserIdResponse> = await userApi.getUserInfoWithUserId(data);
-      console.log(response.status);
-      if (response.status === StatusCodes.OK) {
-        setUserData(response.data.stores);
-        // setStoreId(userData[0].store_id);
+      if (result.status === StatusCodes.OK) {
+        setStoreName(result.data.name);
       }
-    } catch (e) { console.log(e) }
-  }
-  useEffect(() => {
-    if (!token) history.replace("/");
-    
-  }, [history, token, userData]);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
+  useEffect(() => {
+    getStoreInfo();
+  }, []);
+  console.log(storeName);
   return (
     <Container>
       <ConsoleHeader/>
       <Content>
         <ConsoleSideBar
-          setStore={setStoreId}
-          userData={userData}
-          storeId={storeId}
+          storeName={storeName}
+          setCom={setCom}
+          currentIndex={com}
         />
         <ConsoleSubRouter>
-        <button onClick={getUserInfo}>test</button>
-          <Switch>
-            <Route exact path="/console/menu" component={ConsoleMenu}/>
-            <Route exact path="/console/category" component={ConsoleCategory}/>
-            <Route exact path="/console/option-group" component={ConsoleOptionGroup}/>
-          </Switch>
+          {SwitchComponent(com, store_id)}
         </ConsoleSubRouter>
       </Content>
     </Container>

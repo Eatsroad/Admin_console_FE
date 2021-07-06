@@ -1,11 +1,13 @@
-import { strictEqual } from 'assert';
-import { stringify } from 'querystring';
+import { StatusCodes } from 'http-status-codes';
 import React, { useState } from 'react';
-import theme from '../../style/theme';
+import { useHistory } from 'react-router-dom';
+import { storeAPI } from '../../api';
 import { RequiredInput } from '../common/input';
+import { CreateStoreData } from '../common/type';
 import { CreateStoreWrapper, CreateStoreContainer, CreateStoreButton, CreateStoreButtonText } from './styles';
 
 const CreateStore = (): JSX.Element => {
+  const history = useHistory();
   const [storeName, setStoreName] = useState({
     storeName: "",
     state: false
@@ -44,12 +46,22 @@ const CreateStore = (): JSX.Element => {
       onClick();
     }
   }
-  const onClick = () => {
+  const onClick = async () => {
     if (handleButtonState()) {
       try {
+        const data: CreateStoreData = {
+          name: storeName.storeName,
+          address: address.address,
+          phone_number: phoneNumber.phoneNumber,
+          tables: parseInt(table.table)
+        }
+        const result = await storeAPI.createStore(data);
 
+        if (result.status === StatusCodes.CREATED) {
+          console.log(result.data);
+          history.replace(`/console/?store_id=${result.data.store_id}`);
+        }
       } catch (e) {
-  
         console.log(e);
       }
     }

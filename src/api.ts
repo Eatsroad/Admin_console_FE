@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { resourceLimits } from "worker_threads";
-import { CreateStoreData, CreateStoreResponse, UserInfoWithUserIdData, UserInfoWithUserIdResponse } from "./components/common/type";
+import { CreateMenuData, CreateMenuResponse, CreateStoreData, CreateStoreResponse, MenuInfoResponse, UserInfoWithUserIdData, UserInfoWithUserIdResponse } from "./components/common/type";
 import { UserSigninData, UserSigninResponse } from "./components/signin/type";
 import { UserSignupdata, UserSignupResponse } from "./components/signup/type";
 
@@ -33,15 +32,49 @@ export const userApi = {
   } 
 }
 
-export const stoerAPI = {
+export const storeAPI = {
   createStore: async (
     data: CreateStoreData
   ): Promise<AxiosResponse<CreateStoreResponse>> => {
-    const result = await api.post("/store", {
+    const result = await api.post("store", data, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
-      }, data
+      }
+    });
+    return result;
+  },
+  getStoreInfo: async (
+    storeId: number
+  ): Promise<AxiosResponse<CreateStoreResponse>> => {
+    const result = await api.get(`store/${storeId}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
     });
     return result;
   }
+}
+
+export const menuAPI = {
+  createMenu: async (
+    data: CreateMenuData
+  ): Promise<AxiosResponse<CreateMenuResponse>> => {
+    const result = await api.post("menu/", data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  },
+  getAllMenu: async (
+    storeId: string
+  ): Promise<AxiosResponse<MenuInfoResponse[]>> => {
+    const result = await api.get(`menu/?store_id=${storeId}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  },
+
 }

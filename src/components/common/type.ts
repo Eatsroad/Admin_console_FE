@@ -24,3 +24,39 @@ export interface CreateStoreResponse {
   phone_number: string;
   tables: number;
 }
+
+export interface CreateMenuData {
+  name: string;
+  price: number;
+  description: string;
+  state: string;
+  store_id: number;
+}
+export interface CreateMenuResponse {
+  menu_id: number;
+  name: string;
+  price: number;
+  description: string;
+  state: string;
+  // categories: CategoryPreviewInfo[];
+  // optionGroups: OptionGroupPreviewInfo[];
+  // enable_time: EnableTime;
+}
+export interface MenuInfoResponse {
+  menu_id: number;
+  name: string;
+  price: number;
+  description: string;
+  state: string;
+  categories: CategoryPreviewInfo[];
+  optionGroups: OptionGroupPreviewInfo[];
+  // enable_time: EnableTime;
+}
+export interface CategoryPreviewInfo {
+  name: string;
+  category_id: number;
+}
+export interface OptionGroupPreviewInfo {
+  name: string;
+  option_group_id: number;
+};

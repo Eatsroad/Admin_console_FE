@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 interface ButtonProp {
-  index: string;
-  state: string;
+  index: number;
+  state: number;
 }
 
 export const Container = styled.div`
@@ -11,7 +11,6 @@ export const Container = styled.div`
   width: 150px;
 `;
 export const Wapper = styled.div`
-  
   display: flex;
   flex-direction: column;
 `;
@@ -25,5 +24,5 @@ export const Button = styled.button`
   color: ${(props: ButtonProp) => props.index === props.state ? "white" : "black"};
 `;
 
-export const SelectStoreDropDownContainer = styled.div`
+export const StoreName = styled.div`
 `;

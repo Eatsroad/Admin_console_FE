@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { CreateStoreBoxContainer, CreateStoreBoxText} from './styles';
 
 const CreateStoreBox = (): JSX.Element => {
-  const history  = useHistory();
+  const history = useHistory();
 
   return (
     <CreateStoreBoxContainer onClick={() => history.push("/store/create")}>

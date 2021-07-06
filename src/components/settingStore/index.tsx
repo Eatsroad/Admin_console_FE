@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { AxiosResponse } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import React, { useEffect, useState } from 'react';
@@ -11,6 +12,7 @@ const SelectStore = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(true);
   const [stores, setStores] = useState<StorePreviewInfo[]>();
   const userId = localStorage.getItem('userId');
+
 
   const getStores = async () => {
     try {
@@ -31,8 +33,6 @@ const SelectStore = (): JSX.Element => {
   useEffect(() => {
     getStores();
   }, []);
-
-  console.log(stores);
 
   if (loading) return <div>로딩중</div>
   return (
