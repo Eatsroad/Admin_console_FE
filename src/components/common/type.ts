@@ -5,6 +5,10 @@ export interface StorePreviewInfo {
   name: string;
   store_id: number;
 }
+export interface MenuPreviewInfo {
+  name: string;
+  menu_id: number;
+};
 export interface UserInfoWithUserIdResponse  {
   user_id: number;
   name: string;
@@ -60,3 +64,34 @@ export interface OptionGroupPreviewInfo {
   name: string;
   option_group_id: number;
 };
+export interface CreateCategoryData {
+  name: string;
+  description: string;
+  state: string;
+  menus: number[];
+  role: string;
+  store_id: number;
+}
+export interface CreateCategoryResponse {
+  name: string;
+  menus: MenuPreviewInfo[];
+  description: string;
+  state: string;
+  category_id: number;
+  role: string;
+}
+export interface CategoryInfoResponse {
+  name: string;
+  menus: MenuPreviewInfo[];
+  description: string;
+  state: string;
+  category_id: number;
+  role: string;
+}
+export interface UpdataCategoryData {
+  categories: number[];
+}
+
+export interface OptionGroupInfoResponse {
+
+}

@@ -1,5 +1,17 @@
 import axios, { AxiosResponse } from "axios";
-import { CreateMenuData, CreateMenuResponse, CreateStoreData, CreateStoreResponse, MenuInfoResponse, UserInfoWithUserIdData, UserInfoWithUserIdResponse } from "./components/common/type";
+import {
+  CategoryInfoResponse,
+  CreateCategoryData, 
+  CreateCategoryResponse, 
+  CreateMenuData, 
+  CreateMenuResponse, 
+  CreateStoreData, 
+  CreateStoreResponse, 
+  MenuInfoResponse, 
+  UpdataCategoryData, 
+  UserInfoWithUserIdData, 
+  UserInfoWithUserIdResponse 
+} from "./components/common/type";
 import { UserSigninData, UserSigninResponse } from "./components/signin/type";
 import { UserSignupdata, UserSignupResponse } from "./components/signup/type";
 
@@ -76,5 +88,38 @@ export const menuAPI = {
     });
     return result;
   },
+  updateMenuCategory: async (
+    categories: UpdataCategoryData,
+    menuId: number
+  ): Promise<AxiosResponse> => {
+    const result = await api.patch(`menu/${menuId}/category`, categories,  {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  }
+}
 
+export const categoryAPI = {
+  createCategory: async (
+    data: CreateCategoryData
+  ): Promise<AxiosResponse<CreateCategoryResponse>> => {
+    const result = await api.post("category", data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  },
+  getAllCategories: async (
+    storeId: string
+  ): Promise<AxiosResponse<CategoryInfoResponse[]>> => {
+    const result = await api.get(`category/?storeId=${storeId}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  },
 }

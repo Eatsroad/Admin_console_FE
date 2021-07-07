@@ -20,7 +20,7 @@ const ConsoleMenu = ({storeId}: Props): JSX.Element => {
   
   const switchComponent = (): JSX.Element => {
     if (modal) return <CreateMenu storeId={storeId}/>
-    else if (!modal && menu !== undefined) return  menu !== undefined ? <MenuDetail menu={menu}/> : <CreateMenu storeId={storeId}/>
+    else if (!modal && menu !== undefined) return  menu !== undefined ? <MenuDetail menu={menu} storeId={storeId}/> : <CreateMenu storeId={storeId}/>
     else return <></>
   }
   const selectMenu = (menuId: number) => {
