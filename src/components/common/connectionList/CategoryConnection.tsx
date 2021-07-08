@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import React from 'react';
 import ConnectionList from '.';
-import { categoryAPI, menuAPI } from '../../../api';
+import { menuAPI } from '../../../api';
 import { CategoryPreviewInfo, UpdataCategoryData } from '../type';
 import GetAllConnection from './GetAllConnection';
 import { CategoryConnectionContainer } from './styles';

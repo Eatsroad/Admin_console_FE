@@ -17,3 +17,5 @@ export const RequiredMessege = styled.div`
   font-size: 12px;
   color: red;
 `;
+export const CreateFormContainer = styled.div`
+`;

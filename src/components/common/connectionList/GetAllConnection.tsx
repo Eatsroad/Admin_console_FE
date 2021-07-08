@@ -69,9 +69,9 @@ const GetAllConnection = ({
       console.log(e);
     }
   }
-  const getAllOptionGroup = async () => {
+  // const getAllOptionGroup = async () => {
     
-  }
+  // }
 
   useEffect(() => {
     if (menu !== menuId) {

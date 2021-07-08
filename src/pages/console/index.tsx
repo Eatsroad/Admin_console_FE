@@ -16,7 +16,7 @@ import { CreateStoreResponse } from '../../components/common/type';
 
 const SwitchComponent = (index: number, storeId: string): JSX.Element => {
   if (index === 0) return <ConsoleMenu storeId={storeId}/>
-  if (index === 1) return <ConsoleCategory/>
+  if (index === 1) return <ConsoleCategory storeId={storeId}/>
   if (index === 2) return <ConsoleOptionGroup/>
   return <></>
 }
