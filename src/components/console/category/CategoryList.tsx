@@ -1,27 +1,23 @@
 import React from 'react';
 import ListWithComponent from '../../common/listForm';
+import { CategoryClass } from '../../common/listForm/ListClasses';
 import { CategoryInfoResponse } from '../../common/type';
-import { CategortyClass } from './Category';
 import { CategoryListConatainer, AddCategoryButton, } from './styles';
 
 interface Props {
   categories: CategoryInfoResponse[];
   setCategory: (categoryId: number) => void;
-  setModal: (state: boolean) => void;
+  setCreateItemPanel: (state: boolean) => void;
 }
-const CategoryList = ({ categories, setCategory, setModal}: Props): JSX.Element => {
+const CategoryList = ({ categories, setCategory, setCreateItemPanel}: Props): JSX.Element => {
   return (
     <CategoryListConatainer>
-      <AddCategoryButton onClick={() => setModal(true)}>카테고리 추가하기</AddCategoryButton>
-      {/* {
-        categories.map((category) => (
-          <Category categoryInfo={category} onClick={setCategory}/>
-        ))
-      } */}
-
+      <AddCategoryButton onClick={() => setCreateItemPanel(true)}>카테고리 추가하기</AddCategoryButton>
       <ListWithComponent
-        component={CategortyClass}
+        component={new CategoryClass()}
         data={categories}
+        onClick={setCategory}
+        setCreateItemPanel={setCreateItemPanel}
       />
     </CategoryListConatainer>
   );

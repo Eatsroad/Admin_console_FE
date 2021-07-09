@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, RequiredInputContainer, RequiredMessege } from './styles';
+import { Input, RequiredInputContainer, RequiredInpuWrapper, RequiredMessege } from './styles';
 interface Props {
   placeholder: string;
   value: any;
@@ -19,16 +19,19 @@ const RequiredInput: React.FC<Props> = ({
 }: Props) => {
   return (
     <RequiredInputContainer>
-      <Input
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        onKeyPress={onPressKey}
-      />
+      <RequiredInpuWrapper>
+        <Input
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          onKeyPress={onPressKey}
+        />
+        </RequiredInpuWrapper>
       {
         !state ? <RequiredMessege>{messege[0]}</RequiredMessege>
         : <></>
       }
+      
     </RequiredInputContainer>
   );
 };

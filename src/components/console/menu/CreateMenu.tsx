@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import React, { useState } from 'react';
 import { menuAPI } from '../../../api';
-import { RequiredInput } from '../../common/input';
+import CreateFormWithRequiredInput, { DefaultData } from '../../common/input/CreateForm';
 import { CreateMenuData, CreateMenuResponse } from '../../common/type';
 import { CreateMenuButton, CreateMenuContainer } from './styles';
 
@@ -26,7 +26,7 @@ const CreateMenu = ({ storeId }: Props): JSX.Element => {
   const onChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(event.target.value);
   }
-  const onChangeDesxc = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeDesc = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDescription(event.target.value);
   }
   const dummyFunc = () => {
@@ -58,32 +58,38 @@ const CreateMenu = ({ storeId }: Props): JSX.Element => {
       setErrMeseege("이미 있는 메뉴입니다.");
     }
   }
+  const data: DefaultData[] = [
+    {
+      value: name,
+      placeholder: "메뉴 이름",
+      onChange: onChangeName,
+      onPressKey: dummyFunc,
+      state: inputState(),
+      messege: messege,
+    },
+    {
+      value: description,
+      placeholder: "메뉴 설명",
+      onChange: onChangeDesc,
+      onPressKey: dummyFunc,
+      state: inputState(),
+      messege: messege,
+    },
+    {
+      value: description,
+      placeholder: "가격",
+      onChange: onChangePrice,
+      onPressKey: dummyFunc,
+      state: inputState(),
+      messege: messege,
+    },
+    
+  ]
   return (
     <CreateMenuContainer>
-      <RequiredInput
-        value={name}
-        placeholder={"메뉴 이름"}
-        messege={messege}
-        onChange={onChangeName}
-        onPressKey={dummyFunc}
-        state={inputState()}
-      />
-      <RequiredInput
-        value={price}
-        placeholder={"가격"}
-        messege={messege}
-        onChange={onChangePrice}
-        onPressKey={dummyFunc}
-        state={inputState()}
-      />
-      <RequiredInput
-        value={description}
-        placeholder={"메뉴 설명"}
-        messege={messege}
-        onChange={onChangeDesxc}
-        onPressKey={dummyFunc}
-        state={inputState()}
-      />
+     <CreateFormWithRequiredInput
+      data={data}
+    />
       <CreateMenuButton state={inputState()} onClick={create}>
         메뉴 추가하기
         {errState ? `${errMeseege}`: ""}

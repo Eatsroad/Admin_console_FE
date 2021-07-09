@@ -7,11 +7,6 @@ export const Container = styled.div`
   width: 100%;
 `;
 export const Wrapper = styled.div`
-  padding: 20px;
-  display: grid; 
-  /* grid-template-columns: 52.13vw 34.75vw; */
-  grid-template-columns: 1.5fr 1fr;
-  gap: 20px;
 `;
 
 export const MenuListContainer = styled.div`
@@ -21,6 +16,7 @@ export const MenuListContainer = styled.div`
   flex-direction: column;
   padding: 10px;
 `;
+export const AddMenuButton = styled.button``;
 export const CreateMenuContainer = styled.div`
   background-color: white;
   border-radius: 10px;

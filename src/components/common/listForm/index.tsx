@@ -1,22 +1,25 @@
-import React from 'react';
+import { ItemClass } from './ListClasses';
+import { ListImple } from './ListItemClass';
 
 interface Props {
-  component: any
-  data: any[];
+  component: ItemClass;
+  data:  any[]
+  onClick: (id: number) => void
+  setCreateItemPanel: (state: boolean) => void;
 }
 const ListWithComponent = ({
   component,
-  data
+  data,
+  onClick,
+  setCreateItemPanel
 }: Props): JSX.Element => {
-  return (
-    <div>
-      {
-        data.map((i) => (
-          component.Viewer
-        ))
-      }
-    </div>
-  );
+  const handleClick = (id: number) => {
+    onClick(id);
+    setCreateItemPanel(false);
+  }
+  const List = new ListImple(data, component, handleClick);
+
+  return List.Driver();
 }
 
 export default ListWithComponent;

@@ -2,11 +2,11 @@ import { AxiosResponse } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import React, { useEffect, useState } from 'react';
 import { categoryAPI } from '../../../api';
+import AdjustableLayout from '../../common/movingLayout';
 import { CategoryInfoResponse } from '../../common/type';
 import CategoryDetail from './CategoryDetail';
 import CategoryList from './CategoryList';
 import CreateCategory from './CreateCateogory';
-import { Container, Wrapper } from './styles';
 
 interface Props {
   storeId: string;
@@ -18,11 +18,11 @@ const ConsoleCategory = ({
   const [category, setCategory] = useState<CategoryInfoResponse>();
   const [categories, setCategories] = useState<CategoryInfoResponse[]>([]);
   const [menus, setMenus] = useState<number[]>([]);
-  const [modal, setModal] = useState<boolean>(true);
+  const [createItemPanel, setCreateItemPanel] = useState<boolean>(true);
 
   const switchComponent = (): JSX.Element => {
-    if (modal) return <CreateCategory storeId={storeId} menus={menus}/>
-    else if (!modal && category !== undefined) return  category !== undefined ? <CategoryDetail category={category} storeId={storeId}/> : <CreateCategory storeId={storeId} menus={menus}/>
+    if (createItemPanel) return <CreateCategory storeId={storeId} menus={menus}/>
+    else if (!createItemPanel && category !== undefined) return  category !== undefined ? <CategoryDetail category={category} storeId={storeId}/> : <CreateCategory storeId={storeId} menus={menus}/>
     else return <></>
   }
   const selectCategory = (categoryId: number) => {
@@ -48,12 +48,12 @@ const ConsoleCategory = ({
 
   if (loading) return <div>로딩중</div>
   return (
-    <Container>
-      <Wrapper>
-        <CategoryList categories={categories} setCategory={selectCategory} setModal={setModal}/>
-        {switchComponent()}
-      </Wrapper>
-    </Container>
+    <AdjustableLayout
+      leftComponent={<CategoryList categories={categories} setCategory={selectCategory} setCreateItemPanel={setCreateItemPanel}/>}
+      rightComponent={switchComponent()}
+      rightFixedTop={true}
+      leftFixedTop={false}
+    />
   );
 };
 

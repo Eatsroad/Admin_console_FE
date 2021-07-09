@@ -1,5 +1,4 @@
 import React from 'react';
-import { ListClass } from '../../common/listForm/ListItemClass';
 import { CategoryInfoResponse } from '../../common/type';
 import { 
   CategoryContainer, 
@@ -13,22 +12,23 @@ import {
 
 interface Props {
   data: CategoryInfoResponse;
-  onClick: (categoryId: number) => void;
+  onClick: (id: number) => void;
 }
 
-export class CategortyClass implements ListClass {
+const Category = ({
+  data,
+  onClick
+} : Props): JSX.Element => (
+  <CategoryContainer onClick={() => onClick(data.category_id)}>
+    <CategoryWrapper>
+      <CategoryState>{data.state}</CategoryState>
+      <CategoryDefaultInfo>
+        <CategoryName>{data.name}</CategoryName>
+        <CategoryDesc>{data.description}</CategoryDesc>
+      </CategoryDefaultInfo>
+      <CategoryMenuCount>연결된 메뉴 수 : {data.menus.length}개</CategoryMenuCount>
+    </CategoryWrapper>
+  </CategoryContainer>
+);
 
-  Viewer = ({ data, onClick}: Props): JSX.Element => (
-    <CategoryContainer onClick={() => onClick(data.category_id)}>
-      <CategoryWrapper>
-        <CategoryState>{data.state}</CategoryState>
-        <CategoryDefaultInfo>
-          <CategoryName>{data.name}</CategoryName>
-          <CategoryDesc>{data.description}</CategoryDesc>
-        </CategoryDefaultInfo>
-        <CategoryMenuCount>연결된 메뉴 수 : {data.menus.length}개</CategoryMenuCount>
-      </CategoryWrapper>
-    </CategoryContainer>
-  );
-  
-}
+export default Category;

@@ -9,7 +9,13 @@ export const CategoryListConatainer = styled.div`
 `;
 export const AddCategoryButton = styled.button``;
 
-export const CategoryContainer = styled.div``;
+export const CategoryContainer = styled.div`
+  width: 100%;
+  height: 50px;
+  background-color: #EFEFEF;
+  border-radius: 10px 10px 0px 0px;
+  margin-bottom: 56px;
+`;
 export const CategoryWrapper = styled.div``;
 export const CategoryState = styled.div``;
 export const CategoryDefaultInfo = styled.div``;
@@ -22,10 +28,6 @@ export const Container = styled.div`
 `;
 export const Wrapper = styled.div`
   padding: 20px;
-  display: grid; 
-  /* grid-template-columns: 52.13vw 34.75vw; */
-  grid-template-columns: 1.5fr 1fr;
-  gap: 20px;
 `;
 
 export const CreateCategoryContainer = styled.div`
