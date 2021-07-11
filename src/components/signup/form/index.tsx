@@ -5,7 +5,6 @@ import { userApi } from '../../../api';
 import RouteButton from '../../common/buttons/RouteButton';
 import { RequiredInput } from '../../common/input';
 import { UserSignupdata, UserSignupResponse } from '../type';
-import SigninButton from './SigninButton';
 import { StatusCodes } from "http-status-codes";
 import {
   ButtonsContainer, 
@@ -13,6 +12,7 @@ import {
   SigninFormContainer, 
 } from './styles';
 import { UserSigninData, UserSigninResponse } from '../../signin/type';
+import ButtonWithRequiredState from '../../common/buttons/ButtonWithRequiredState';
 
 const SignupForm: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -141,10 +141,12 @@ const SignupForm: React.FC = () => {
         onPressKey={onPressKey}
       />
       <ButtonsContainer>
-        <SigninButton
-          signinState={hanbleSiginState()}
+        <ButtonWithRequiredState
+          state={hanbleSiginState()}
           errState={errState}
           onClick={onClick}
+          text={"로그인"}
+          errMessege={"이미 존재하는 이메일입니다."}
         />
         <GotoSignupPageButton>
           <RouteButton route={"/signin"} title={"이미 회원이신가요?"}/>

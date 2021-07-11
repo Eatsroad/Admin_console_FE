@@ -1,21 +1,23 @@
-import { AxiosResponse } from 'axios';
-import { StatusCodes } from 'http-status-codes';
 import React, { useState } from 'react';
-import { menuAPI } from '../../../api';
-import CreateFormWithRequiredInput, { DefaultData } from '../../common/input/CreateForm';
-import { CreateMenuData, CreateMenuResponse } from '../../common/type';
-import { CreateMenuButton, CreateMenuContainer } from './styles';
+import ButtonWithRequiredState from '../../../common/buttons/ButtonWithRequiredState';
+import CreateFormWithRequiredInput, { DefaultData } from '../../../common/input/CreateForm';
+import { 
+  Container 
+} from './styles';
 
 interface Props {
-  storeId: string;
+  create: ( name: string, price: string, description: string) => void;
+  errMessege: string;
+  errState: boolean;
 }
-const CreateMenu = ({ storeId }: Props): JSX.Element => {
+const CreateMenu = ({ 
+  create,
+  errMessege,
+  errState
+}: Props): JSX.Element => {
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [errMeseege, setErrMeseege] = useState<string>();
-  const [errState, setErrState] = useState<boolean>(false);
-
   const messege = [
     "필수 항목입니다."
   ]
@@ -37,27 +39,12 @@ const CreateMenu = ({ storeId }: Props): JSX.Element => {
     if (price === "") return false;
     if (description === "") return false;
     else return true;
-  } 
-
-  const create = async () => {
-    try {
-      const data: CreateMenuData = {
-        name: name,
-        price: parseInt(price),
-        description: description,
-        state: "주문 가능",
-        store_id: parseInt(storeId)
-      };
-      const result: AxiosResponse<CreateMenuResponse> = await menuAPI.createMenu(data);
-
-      if (result.status === StatusCodes.CREATED) {
-        console.log(result.data);
-      }
-    } catch (e) {
-      setErrState(true);
-      setErrMeseege("이미 있는 메뉴입니다.");
-    }
   }
+  const onClick = () => {
+    console.log("clicked")
+    create(name, price, description);
+  }
+
   const data: DefaultData[] = [
     {
       value: name,
@@ -76,7 +63,7 @@ const CreateMenu = ({ storeId }: Props): JSX.Element => {
       messege: messege,
     },
     {
-      value: description,
+      value: price,
       placeholder: "가격",
       onChange: onChangePrice,
       onPressKey: dummyFunc,
@@ -86,16 +73,18 @@ const CreateMenu = ({ storeId }: Props): JSX.Element => {
     
   ]
   return (
-    <CreateMenuContainer>
+    <Container>
      <CreateFormWithRequiredInput
       data={data}
     />
-      <CreateMenuButton state={inputState()} onClick={create}>
-        메뉴 추가하기
-        {errState ? `${errMeseege}`: ""}
-      </CreateMenuButton>
-      
-    </CreateMenuContainer>
+    <ButtonWithRequiredState
+      state={inputState()}
+      onClick={onClick}
+      text={"메뉴 추가하기"}
+      errMessege={errMessege!}
+      errState={errState}
+    />      
+    </Container>
   );
 }
 

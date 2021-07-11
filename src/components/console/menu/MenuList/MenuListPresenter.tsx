@@ -1,8 +1,11 @@
 import React from 'react';
-import ListWithComponent from '../../common/listForm';
-import { MenuClass } from '../../common/listForm/ListClasses';
-import { MenuInfoResponse } from '../../common/type';
-import { AddMenuButton, MenuListContainer } from './styles';
+import ListWithComponent from '../../../common/listForm';
+import { MenuClass } from '../../../common/listForm/ListClasses';
+import { MenuInfoResponse } from '../../../common/type';
+import { 
+  AddMenuButton, 
+  Container,
+} from './styles';
 
 interface Props {
   menus: MenuInfoResponse[];
@@ -10,8 +13,8 @@ interface Props {
   setCreateItemPanel: (state: boolean) => void;
 }
 
-const MenuList = ({ menus, selectMenu, setCreateItemPanel}: Props): JSX.Element => (
-  <MenuListContainer>
+const MenuListPresenter = ({ menus, selectMenu, setCreateItemPanel}: Props): JSX.Element => (
+  <Container>
     <AddMenuButton onClick={() => setCreateItemPanel(true)}>메뉴 추가하기</AddMenuButton>
     <ListWithComponent
       component={new MenuClass()}
@@ -19,7 +22,7 @@ const MenuList = ({ menus, selectMenu, setCreateItemPanel}: Props): JSX.Element 
       onClick={selectMenu}
       setCreateItemPanel={setCreateItemPanel}
     />
-  </MenuListContainer>
+  </Container>
 );
 
-export default MenuList;
+export default MenuListPresenter;

@@ -10,7 +10,7 @@ interface Props {
   existList: any[];
   connect: (id: number) => void;
   storeId: string;
-  menuId: number
+  menuId: number;
 }
 
 const GetAllConnection = ({
@@ -18,7 +18,7 @@ const GetAllConnection = ({
   existList,
   connect,
   storeId,
-  menuId
+  menuId,
 }: Props): JSX.Element => {
   const [list, setList] = useState<CategoryPreviewInfo[] | OptionGroupPreviewInfo[] | MenuPreviewInfo[]>([]);
   const [state, setState] = useState<boolean>(false);
@@ -44,7 +44,7 @@ const GetAllConnection = ({
         getAllMenu();
       } else if (mode === 3) {
   
-      } 
+      }
     }
   }
   const getAllCategory = async () => {

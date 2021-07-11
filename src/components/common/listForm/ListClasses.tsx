@@ -1,6 +1,6 @@
 import React from 'react';
 import Category from '../../console/category/Category';
-import Menu from "../../console/menu/Menu";
+import Menu from "../../console/menu/Menu/Menu";
 import { CategoryInfoResponse, MenuInfoResponse } from "../type";
 
 export interface ItemClass {

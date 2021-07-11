@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import React, { useState } from 'react';
 import { categoryAPI } from '../../../api';
+import ButtonWithRequiredState from '../../common/buttons/ButtonWithRequiredState';
 import CreateFormWithRequiredInput, { DefaultData } from '../../common/input/CreateForm';
 import { CreateCategoryData, CreateCategoryResponse } from '../../common/type';
 import { CreateCategoryContainer } from './styles';
@@ -56,23 +57,26 @@ const CreateCategory = ({
     
   ]
   const create = async () => {
-    try {
-      const data: CreateCategoryData = {
-        name: name,
-        description: description,
-        state: "주문 가능",
-        store_id: parseInt(storeId),
-        menus: menus,
-        role: "ETC"
+    if (inputState()) {
+      try {
+        const data: CreateCategoryData = {
+          name: name,
+          description: description,
+          state: "주문 가능",
+          store_id: parseInt(storeId),
+          menus: menus,
+          role: "ETC"
+        }
+        const response: AxiosResponse<CreateCategoryResponse> = await categoryAPI.createCategory(data);
+  
+        if (response.status === StatusCodes.CREATED) {
+  
+        }
+  
+      } catch (e) {
+        setErrState(true);
+        setErrMeseege("이미 있는 카테고리입니다.");
       }
-      const response: AxiosResponse<CreateCategoryResponse> = await categoryAPI.createCategory(data);
-
-      if (response.status === StatusCodes.CREATED) {
-
-      }
-
-    } catch (e) {
-      console.log(e);
     }
   }
 
@@ -81,9 +85,13 @@ const CreateCategory = ({
       <CreateFormWithRequiredInput
         data={data}
       />
-      <button onClick={create}>
-        카테고리 생성하기
-      </button>
+      <ButtonWithRequiredState
+      state={inputState()}
+      onClick={create}
+      text={"카테고리 추가하기"}
+      errMessege={errMeseege!}
+      errState={errState}
+    />    
     </CreateCategoryContainer>
   ) 
 };

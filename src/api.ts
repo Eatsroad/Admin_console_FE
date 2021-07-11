@@ -123,3 +123,16 @@ export const categoryAPI = {
     return result;
   },
 }
+
+// export const optoinGroupAPI = {
+//   createOptionGroup: async (
+
+//   ): Promise<AxiosResponse<>> => {
+
+//   },
+//   getAllOptionGroups: async (
+
+//   ): Promise<AxiosResponse<>> => {
+
+//   }
+// }

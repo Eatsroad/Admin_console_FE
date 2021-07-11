@@ -42,9 +42,6 @@ export interface CreateMenuResponse {
   price: number;
   description: string;
   state: string;
-  // categories: CategoryPreviewInfo[];
-  // optionGroups: OptionGroupPreviewInfo[];
-  // enable_time: EnableTime;
 }
 export interface MenuInfoResponse {
   menu_id: number;
@@ -64,6 +61,10 @@ export interface OptionGroupPreviewInfo {
   name: string;
   option_group_id: number;
 };
+export interface OptionPreviewInfo {
+  name: string;
+  option_group_id: number;
+}
 export interface CreateCategoryData {
   name: string;
   description: string;
@@ -93,5 +94,28 @@ export interface UpdataCategoryData {
 }
 
 export interface OptionGroupInfoResponse {
-
+  option_group_id : number;
+  name: string;
+  description:string;
+  state: string;
+  option_id: OptionPreviewInfo[];
+}
+export interface CreateOptionGroupData {
+  name: string;
+  description: string;
+  state: string;
+  option_id: number[];
+}
+export interface CreateOptionData {
+  option_group_id: number[];
+  name: string;
+  price: number;   
+  state: string;
+}
+export interface OptionInfoResponse {
+  option_id: number;
+  option_group_id: OptionGroupPreviewInfo[];
+  name: string;
+  price: number;
+  state: string;
 }

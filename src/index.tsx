@@ -4,13 +4,18 @@ import { ThemeProvider } from "styled-components";
 import AppRouter from "./routes";
 import GlobalStyle from "./style/GlobalStyle";
 import theme from "./style/theme";
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle/>
-      <AppRouter/>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle/>
+        <AppRouter/>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root"),
 );

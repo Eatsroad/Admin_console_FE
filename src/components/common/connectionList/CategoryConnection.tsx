@@ -16,7 +16,7 @@ interface Props {
 const CateogryConnection = ({ 
   categories,
   storeId,
-  menuId
+  menuId,
 }: Props): JSX.Element => {
   const prevCategoryId = () => {
     let result: number[] = [];
@@ -38,7 +38,6 @@ const CateogryConnection = ({
       const response: AxiosResponse = await menuAPI.updateMenuCategory(data, menuId);
       console.log(response.status)
       if (response.status === StatusCodes.OK) {
-
       }
     } catch (e) { console.log(e) }
 
@@ -52,7 +51,6 @@ const CateogryConnection = ({
       const response: AxiosResponse = await menuAPI.updateMenuCategory(data, menuId);
       console.log(response.status)
       if (response.status === StatusCodes.OK) {
-
       }
     } catch (e) { console.log(e) }
   }
