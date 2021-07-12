@@ -1,28 +1,26 @@
 import { StatusCodes } from 'http-status-codes';
 import React, { useEffect, useState } from 'react';
-import ConnectionList from '.';
-import { categoryAPI, menuAPI } from '../../../api';
-import { CategoryPreviewInfo, MenuPreviewInfo, OptionGroupPreviewInfo } from '../type';
-import { ConnectButton, GetAllConnectionContainer } from './styles';
+import GetAllConnectionPresenter from './GetAllConnectionPresenter';
+import { categoryAPI, menuAPI } from '../../../../api';
+import { CategoryPreviewInfo, MenuPreviewInfo, OptionGroupPreviewInfo } from '../../type';
 
 interface Props {
   mode: number,
   existList: any[];
   connect: (id: number) => void;
-  storeId: string;
   menuId: number;
 }
 
-const GetAllConnection = ({
+const GetAllConnectionContainer = ({
   mode,
   existList,
   connect,
-  storeId,
   menuId,
 }: Props): JSX.Element => {
   const [list, setList] = useState<CategoryPreviewInfo[] | OptionGroupPreviewInfo[] | MenuPreviewInfo[]>([]);
   const [state, setState] = useState<boolean>(false);
   const [menu, setMenu] = useState<number>(menuId);
+  const storeId = localStorage.getItem('storeId')!;
 
   const filterList = () => {
     let result: any[] = list;
@@ -69,29 +67,21 @@ const GetAllConnection = ({
       console.log(e);
     }
   }
-  // const getAllOptionGroup = async () => {
-    
-  // }
-
+  
   useEffect(() => {
     if (menu !== menuId) {
       setState(false);
       setMenu(menuId);
     };
   }, [menu, menuId]);
+
   return (
-    <GetAllConnectionContainer>
-      <ConnectButton onClick={onClick}>{state ? "취소" : "연결하기"}</ConnectButton>
-      {
-        list.length !== 0 && state &&
-        <ConnectionList
-          title={""}
-          list={filterList()}
-          connection={connect}
-          options={{price: false, connection: false}}
-        />
-      }
-    </GetAllConnectionContainer>
+    <GetAllConnectionPresenter
+      list={filterList()}
+      state={state}
+      onClick={onClick}
+      connect={connect}
+    />
   );
 };
-export default GetAllConnection;
+export default GetAllConnectionContainer;

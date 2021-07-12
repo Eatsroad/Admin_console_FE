@@ -35,7 +35,6 @@ const ConnectionList = ({
         {title !== "" ? <Title>{title} {list.length}개</Title> : <></>}
       </InfoContainer>
       <Wrapper>
-
         {
           list.length !== 0 && 
           <ItemContainer>

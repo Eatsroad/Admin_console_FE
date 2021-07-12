@@ -78,6 +78,16 @@ export const menuAPI = {
     });
     return result;
   },
+  deleteMenu: async (
+    menuId: number
+  ) :Promise<AxiosResponse> => {
+    const result = await api.delete(`menu/${menuId}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  },
   getAllMenu: async (
     storeId: string
   ): Promise<AxiosResponse<MenuInfoResponse[]>> => {
@@ -89,10 +99,10 @@ export const menuAPI = {
     return result;
   },
   updateMenuCategory: async (
-    categories: UpdataCategoryData,
+    data: UpdataCategoryData,
     menuId: number
   ): Promise<AxiosResponse> => {
-    const result = await api.patch(`menu/${menuId}/category`, categories,  {
+    const result = await api.patch(`menu/${menuId}/category`, data,  {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
       }

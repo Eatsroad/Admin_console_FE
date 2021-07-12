@@ -42,9 +42,6 @@ export const ItemState = styled.button`
   border-radius: 10px;
 `;
 
-export const GetAllConnectionContainer = styled.div`
-`;
-export const ConnectButton = styled.button`
-`;
+
 
 export const CategoryConnectionContainer = styled.div``;

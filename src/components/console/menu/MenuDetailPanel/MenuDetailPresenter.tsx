@@ -1,5 +1,5 @@
 import React from 'react';
-import CateogryConnection from '../../../common/connectionList/CategoryConnection';
+import CategoryConnectionContainer from '../../../common/connectionList/category/CategoryConnectionContainer';
 import Tags from '../../../common/tag/Tags';
 import { MenuInfoResponse } from '../../../common/type';
 import { addCommaPrice } from '../../../common/utils/addCommaPrice';
@@ -16,17 +16,19 @@ import {
 
 interface Props {
   menu: MenuInfoResponse;
-  storeId: string;
+  deleteMenu: () => void;
 }
-const MenuDetail = ({ menu, storeId}: Props): JSX.Element => (
+const MenuDetailPresenter = ({ 
+  menu,
+  deleteMenu,
+}: Props): JSX.Element => (
   <Contaienr>
     <MenuDetailMOdifyButton>수정하기</MenuDetailMOdifyButton>
     <MenuDetailName>이름 {menu.name}</MenuDetailName>
     <MenuDetailPrice>가격 {addCommaPrice(menu.price)}원</MenuDetailPrice>
     <MenuDetailCategory>
-      <CateogryConnection
+      <CategoryConnectionContainer
         categories={menu.categories}
-        storeId={storeId}
         menuId={menu.menu_id}
       />
     </MenuDetailCategory>
@@ -38,11 +40,11 @@ const MenuDetail = ({ menu, storeId}: Props): JSX.Element => (
       메뉴 상태
       {menu.state}
     </MenuDetailState>
-    <MenuDetailDeleteButton>
+    <MenuDetailDeleteButton onClick={deleteMenu}>
       메뉴 삭제하기
     </MenuDetailDeleteButton>
   </Contaienr>
 
 );
 
-export default MenuDetail;
+export default MenuDetailPresenter;

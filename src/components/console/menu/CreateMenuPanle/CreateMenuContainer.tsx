@@ -1,23 +1,18 @@
 import React, { useState } from 'react';
-import ButtonWithRequiredState from '../../../common/buttons/ButtonWithRequiredState';
-import CreateFormWithRequiredInput, { DefaultData } from '../../../common/input/CreateForm';
-import { 
-  Container 
-} from './styles';
+import { useDispatch } from 'react-redux';
+import { DefaultData } from '../../../common/input/CreateForm';
+import { CreateMenuData } from '../../../common/type';
+import CreateMenuPresenter from './CreateMenuPresenter';
 
-interface Props {
-  create: ( name: string, price: string, description: string) => void;
-  errMessege: string;
-  errState: boolean;
-}
-const CreateMenu = ({ 
-  create,
-  errMessege,
-  errState
-}: Props): JSX.Element => {
+const CreateMenuContainer = (): JSX.Element => {
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [errMessege, setErrMeseege] = useState<string>();
+  const [errState, setErrState] = useState<boolean>(false);
+  
+  const dispatch = useDispatch();
+
   const messege = [
     "필수 항목입니다."
   ]
@@ -41,8 +36,17 @@ const CreateMenu = ({
     else return true;
   }
   const onClick = () => {
-    console.log("clicked")
-    create(name, price, description);
+    const data: CreateMenuData = {
+      name: name,
+      price: parseInt(price),
+      description: description,
+      state: "주문 가능",
+      store_id: parseInt(localStorage.getItem('storeId')!),
+    }
+    dispatch({ type: "/menu/createMenuSaga", payload: { data }});
+    setName("");
+    setPrice("");
+    setDescription("");
   }
 
   const data: DefaultData[] = [
@@ -73,19 +77,14 @@ const CreateMenu = ({
     
   ]
   return (
-    <Container>
-     <CreateFormWithRequiredInput
+    <CreateMenuPresenter
       data={data}
-    />
-    <ButtonWithRequiredState
       state={inputState()}
-      onClick={onClick}
-      text={"메뉴 추가하기"}
-      errMessege={errMessege!}
       errState={errState}
-    />      
-    </Container>
+      onClick={onClick}
+      errMessege={errMessege!}
+    />
   );
-}
+};
 
-export default CreateMenu;
+export default CreateMenuContainer;
