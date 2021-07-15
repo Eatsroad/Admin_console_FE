@@ -17,7 +17,6 @@ const ConsoleCategory = ({
     category: state.categorySlice.category,
   }))
   const [loading, setLoading] = useState<boolean>(true);
-  const [menus, setMenus] = useState<number[]>([]);
   const [createItemPanel, setCreateItemPanel] = useState<boolean>(true);
 
   const dispatch = useDispatch();

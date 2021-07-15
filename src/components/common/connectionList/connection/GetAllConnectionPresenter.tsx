@@ -17,7 +17,7 @@ const GetAllConnectionPresenter = ({
   connect
 }: PresenterProps): JSX.Element => (
   <Container>
-    <ConnectButton onClick={onClick}>{state ? "취소" : "연결하기"}</ConnectButton>
+    <ConnectButton onClick={onClick}>{state ? "완료" : "연결하기"}</ConnectButton>
     {
       list.length !== 0 && state &&
       <ConnectionList

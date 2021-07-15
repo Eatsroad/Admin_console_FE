@@ -1,10 +1,6 @@
-import { AxiosResponse } from 'axios';
-import { StatusCodes } from 'http-status-codes';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { menuAPI } from '../../../../api';
-import { setMenu } from '../../../console/menu/slice';
-import { CategoryPreviewInfo, UpdataCategoryData } from '../../type';
+import { CategoryPreviewInfo, UpdateCategoryData } from '../../type';
 import CateogryConnectionPresenter from './CategoryConnectionPresenter';
 
 interface ContainerProps {
@@ -29,7 +25,7 @@ const CategoryConnectionContainer = ({
 
   const disconnect = async (item: any) => {
     try {
-      const data: UpdataCategoryData = {
+      const data: UpdateCategoryData = {
         categories: removeCategoryId(item.category_id)
       };
       dispatch({type: "/menu/updateMenuSaga", payload: {menuId, data}});
@@ -38,7 +34,7 @@ const CategoryConnectionContainer = ({
   }
   const connect = async (item: any) => {
     try {
-      const data: UpdataCategoryData = {
+      const data: UpdateCategoryData = {
         categories: [item.category_id, ...prevCategoryId()]
       };
       dispatch({type: "/menu/updateMenuSaga", payload: {menuId, data}});

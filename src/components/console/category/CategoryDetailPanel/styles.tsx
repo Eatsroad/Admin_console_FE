@@ -11,3 +11,5 @@ export const CategoryDetatilModifButton = styled.button``;
 export const CategoryDetatilName = styled.div``;
 export const CategoryDetatilDesc = styled.div``;
 export const CategoryDeleteButton = styled.button``;
+
+export const CategoryDetailMenuConnectionList = styled.div``;

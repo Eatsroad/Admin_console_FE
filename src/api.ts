@@ -8,7 +8,8 @@ import {
   CreateStoreData, 
   CreateStoreResponse, 
   MenuInfoResponse, 
-  UpdataCategoryData, 
+  UpdateCategoryData, 
+  UpdateCategoryMenu, 
   UserInfoWithUserIdData, 
   UserInfoWithUserIdResponse 
 } from "./components/common/type";
@@ -99,7 +100,7 @@ export const menuAPI = {
     return result;
   },
   updateMenuCategory: async (
-    data: UpdataCategoryData,
+    data: UpdateCategoryData,
     menuId: number
   ): Promise<AxiosResponse> => {
     const result = await api.patch(`menu/${menuId}/category`, data,  {
@@ -136,6 +137,17 @@ export const categoryAPI = {
     categoryId: number
   ): Promise<AxiosResponse> => {
     const result = await api.delete(`category/${categoryId}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  },
+  updateCategoryMenu: async (
+    data: UpdateCategoryMenu,
+    categoryId: number
+  ): Promise<AxiosResponse> => {
+    const result = await api.put(`category/${categoryId}/menus`, data, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
       }

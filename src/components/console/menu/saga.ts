@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import {call, put, takeLatest } from 'redux-saga/effects'
 import { menuAPI } from '../../../api'
-import { CreateMenuData, CreateMenuResponse, MenuInfoResponse, UpdataCategoryData } from '../../common/type';
+import { CreateMenuData, CreateMenuResponse, MenuInfoResponse, UpdateCategoryData } from '../../common/type';
 import { setMenu, setMenus } from './slice';
 
 
@@ -67,7 +67,7 @@ function* updataMenuSaga(action: {
   type: string;
   payload: {
     menuId: number,
-    data: UpdataCategoryData
+    data: UpdateCategoryData
   }
 }) {
   const storeId = localStorage.getItem('storeId')!;

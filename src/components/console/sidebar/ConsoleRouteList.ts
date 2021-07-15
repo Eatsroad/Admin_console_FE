@@ -10,5 +10,8 @@ export const ConsoleRouteList: ConsoleRouteListProps[] = [
   },
   {
     name: "옵션그룹",
-  },    
+  },
+  {
+    name: '가게 수정'
+  }
 ];

@@ -9,6 +9,8 @@ export const Container = styled.div`
   position: fixed;
   top: 50px;
   width: 150px;
+  height: 100%;
+  background-color: white;
 `;
 export const Wapper = styled.div`
   display: flex;
@@ -25,4 +27,8 @@ export const Button = styled.button`
 `;
 
 export const StoreName = styled.div`
+  height: 18px;
+  text-align: center;
+  font-weight: bold;
+  border: solid 1px blue;
 `;

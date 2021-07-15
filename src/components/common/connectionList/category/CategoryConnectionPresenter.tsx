@@ -24,7 +24,7 @@ const CateogryConnectionPresenter = ({
       mode={1}
       existList={categories}
       connect={connect}
-      menuId={menuId}
+      id={menuId}
     />
     <ConnectionList
       title={title}

@@ -89,10 +89,12 @@ export interface CategoryInfoResponse {
   category_id: number;
   role: string;
 }
-export interface UpdataCategoryData {
+export interface UpdateCategoryData {
   categories: number[];
 }
-
+export interface UpdateCategoryMenu {
+  menus: number[];
+}
 export interface OptionGroupInfoResponse {
   option_group_id : number;
   name: string;

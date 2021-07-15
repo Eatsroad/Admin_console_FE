@@ -8,18 +8,18 @@ interface Props {
   mode: number,
   existList: any[];
   connect: (id: number) => void;
-  menuId: number;
+  id: number;
 }
 
 const GetAllConnectionContainer = ({
   mode,
   existList,
   connect,
-  menuId,
+  id,
 }: Props): JSX.Element => {
   const [list, setList] = useState<CategoryPreviewInfo[] | OptionGroupPreviewInfo[] | MenuPreviewInfo[]>([]);
   const [state, setState] = useState<boolean>(false);
-  const [menu, setMenu] = useState<number>(menuId);
+  const [itemId, setItemId] = useState<number>(id);
   const storeId = localStorage.getItem('storeId')!;
 
   const filterList = () => {
@@ -69,11 +69,11 @@ const GetAllConnectionContainer = ({
   }
   
   useEffect(() => {
-    if (menu !== menuId) {
+    if (itemId !== id) {
       setState(false);
-      setMenu(menuId);
+      setItemId(id);
     };
-  }, [menu, menuId]);
+  }, [id, itemId]);
 
   return (
     <GetAllConnectionPresenter

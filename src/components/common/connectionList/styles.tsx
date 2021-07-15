@@ -3,6 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   max-height: 400px;
+  /* border-radius: 10px; */
+  overflow: auto;
+  /* ::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 0 10px 0 10px;
+  } */
 `;
 export const InfoContainer = styled.div``;
 export const Title = styled.div``;
@@ -11,6 +17,7 @@ export const Wrapper = styled.div`
   background-color: #F4F4F4;
   border-radius: 10px;
   margin-top: 10px;
+  overflow: auto;
 `;
 
 export const ItemContainer = styled.div`
