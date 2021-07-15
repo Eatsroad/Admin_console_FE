@@ -1,12 +1,11 @@
-import { AxiosResponse } from 'axios';
-import { StatusCodes } from 'http-status-codes';
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { categoryAPI } from '../../../api';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
 import AdjustableLayout from '../../common/movingLayout';
-import { CategoryInfoResponse } from '../../common/type';
-import CategoryDetail from './CategoryDetail';
-import CategoryList from './CategoryList';
-import CreateCategory from './CreateCateogory';
+import CategoryDetailContainer from './CategoryDetailPanel/CategoryDetailContainer';
+import CategoryListContainer from './CategoryList/CategoryListContainer';
+import CreateCategoryContainer from './CreateCategoryPanel/CreateCateogoryContainer';
 
 interface Props {
   storeId: string;
@@ -14,42 +13,33 @@ interface Props {
 const ConsoleCategory = ({
   storeId
 }: Props):JSX.Element => {
+  const { category } = useSelector((state: RootState) => ({
+    category: state.categorySlice.category,
+  }))
   const [loading, setLoading] = useState<boolean>(true);
-  const [category, setCategory] = useState<CategoryInfoResponse>();
-  const [categories, setCategories] = useState<CategoryInfoResponse[]>([]);
   const [menus, setMenus] = useState<number[]>([]);
   const [createItemPanel, setCreateItemPanel] = useState<boolean>(true);
 
-  const switchComponent = (): JSX.Element => {
-    if (createItemPanel) return <CreateCategory storeId={storeId} menus={menus}/>
-    else if (!createItemPanel && category !== undefined) return  category !== undefined ? <CategoryDetail category={category} storeId={storeId}/> : <CreateCategory storeId={storeId} menus={menus}/>
-    else return <></>
-  }
-  const selectCategory = (categoryId: number) => {
-    const selectedCategory: CategoryInfoResponse = categories.filter((m) => m.category_id === categoryId)[0];
-    setCategory(selectedCategory);
-  }
-  const getAllCategory = async () => {
-    try {
-      const result: AxiosResponse<CategoryInfoResponse[]> = await categoryAPI.getAllCategories(storeId);
+  const dispatch = useDispatch();
 
-      if (result.status === StatusCodes.OK) {
-        setCategories(result.data);
-        setLoading(!loading);
-      }
-    } catch (e) {
-      console.log(e);
-    }
+  const getAllCategoryDispatch = (storeId: string) => {
+    dispatch( { type: "/category/getAllCategorySaga", payload: { storeId } } );
+    setLoading(!loading);
+  }
+  const switchComponent = (): JSX.Element => {
+    if (createItemPanel) return <CreateCategoryContainer/>
+    else if (!createItemPanel || category !== null) return  category !== undefined ? <CategoryDetailContainer setCreateItemPanel={setCreateItemPanel}/> : <CreateCategoryContainer/>
+    else return <></>
   }
 
   useEffect(() => {
-    if (loading) getAllCategory();
-  }, []);
+    if (loading) getAllCategoryDispatch(storeId);
+  }, [loading]);
 
   if (loading) return <div>로딩중</div>
   return (
     <AdjustableLayout
-      leftComponent={<CategoryList categories={categories} setCategory={selectCategory} setCreateItemPanel={setCreateItemPanel}/>}
+      leftComponent={<CategoryListContainer setCreateItemPanel={setCreateItemPanel}/>}
       rightComponent={switchComponent()}
       rightFixedTop={true}
       leftFixedTop={false}

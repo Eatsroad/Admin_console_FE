@@ -1,7 +1,7 @@
 import React from 'react';
-import { CategoryInfoResponse } from '../../common/type';
+import { CategoryInfoResponse } from '../../../common/type';
 import { 
-  CategoryContainer, 
+  Container, 
   CategoryDefaultInfo, 
   CategoryDesc, 
   CategoryMenuCount, 
@@ -19,7 +19,7 @@ const Category = ({
   data,
   onClick
 } : Props): JSX.Element => (
-  <CategoryContainer onClick={() => onClick(data.category_id)}>
+  <Container onClick={() => onClick(data.category_id)}>
     <CategoryWrapper>
       <CategoryState>{data.state}</CategoryState>
       <CategoryDefaultInfo>
@@ -28,7 +28,7 @@ const Category = ({
       </CategoryDefaultInfo>
       <CategoryMenuCount>연결된 메뉴 수 : {data.menus.length}개</CategoryMenuCount>
     </CategoryWrapper>
-  </CategoryContainer>
+  </Container>
 );
 
 export default Category;

@@ -32,12 +32,7 @@ const CategoryConnectionContainer = ({
       const data: UpdataCategoryData = {
         categories: removeCategoryId(item.category_id)
       };
-      const response: AxiosResponse = await menuAPI.updateMenuCategory(data, menuId);
-      console.log(response.status)
-      if (response.status === StatusCodes.OK) {
-        dispatch({type: '/menu/getAllMenuSaga'});
-        dispatch(setMenu(menuId));
-      }
+      dispatch({type: "/menu/updateMenuSaga", payload: {menuId, data}});
     } catch (e) { console.log(e) }
 
   }
@@ -46,12 +41,7 @@ const CategoryConnectionContainer = ({
       const data: UpdataCategoryData = {
         categories: [item.category_id, ...prevCategoryId()]
       };
-      const response: AxiosResponse = await menuAPI.updateMenuCategory(data, menuId);
-      console.log(response.status)
-      if (response.status === StatusCodes.OK) {
-        dispatch({type: '/menu/getAllMenuSaga'});
-        dispatch(setMenu(menuId));
-      }
+      dispatch({type: "/menu/updateMenuSaga", payload: {menuId, data}});
     } catch (e) { console.log(e) }
   }
 

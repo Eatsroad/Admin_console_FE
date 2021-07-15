@@ -125,13 +125,23 @@ export const categoryAPI = {
   getAllCategories: async (
     storeId: string
   ): Promise<AxiosResponse<CategoryInfoResponse[]>> => {
-    const result = await api.get(`category/?storeId=${storeId}`, {
+    const result = await api.get(`category?storeId=${storeId}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
       }
     });
     return result;
   },
+  deleteCategory: async (
+    categoryId: number
+  ): Promise<AxiosResponse> => {
+    const result = await api.delete(`category/${categoryId}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  }
 }
 
 // export const optoinGroupAPI = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Category from '../../console/category/Category';
+import Category from '../../console/category/Category/Category';
 import Menu from "../../console/menu/Menu/Menu";
 import { CategoryInfoResponse, MenuInfoResponse } from "../type";
 

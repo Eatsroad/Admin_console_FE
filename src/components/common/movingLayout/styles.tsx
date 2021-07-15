@@ -15,6 +15,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   padding: 20px;
   display: flex;
+  height: 100%;
 `;
 export const LeftViewContainer = styled.div`
   width: 100%;
@@ -22,15 +23,15 @@ export const LeftViewContainer = styled.div`
 `;
 export const RightViewContainer = styled.div`
   flex: 1;
+  height: 100%;
   ${(props: FiexdProps) => props.state ? `transform: translate(0, ${props.y}px)`: ""};
 `;
 export const Divider = styled.div`
-  height: 100%;
+  height: 100px;
   border: 1px solid #808080;
-  
-  
 `;
 export const DividerHitBox = styled.div`
+  height: 100%;
   cursor: col-resize;
   align-self: stretch;
   display: flex;

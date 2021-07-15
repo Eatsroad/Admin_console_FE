@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import AdjustableLayout from '../../common/movingLayout';
-import { MenuInfoResponse } from '../../common/type';
-import CreateMenuContainer from './CreateMenuPanle/CreateMenuContainer';
+import CreateMenuContainer from './CreateMenuPanel/CreateMenuContainer';
 import MenuDetailContainer from './MenuDetailPanel/MenuDetailContainer';
 import MenuList from './MenuList/MenuListContainer';
 
@@ -24,13 +23,15 @@ const ConsoleMenu = ({storeId}: Props): JSX.Element => {
   const getAllMenuDispatch = (storeId: string) => {
     dispatch({type: "/menu/getAllMenuSaga", payload: { storeId }});
     setLoading(!loading);
-  }
+  };
   
   const switchComponent = (): JSX.Element => {
     if (createItemPanel) return <CreateMenuContainer/>
-    else if (!createItemPanel || menu !== null) return  menu !== undefined ? <MenuDetailContainer menu={menu}/> : <CreateMenuContainer/>
-    else return <></>
-  }
+    else if (!createItemPanel || menu !== null) return  menu !== undefined ? <MenuDetailContainer menu={menu} setCreateItemPanel={setCreateItemPanel}/> : <CreateMenuContainer/>
+    else if (menu === null) return <CreateMenuContainer/>
+    else return <CreateMenuContainer/>
+  };
+
   useEffect(() => {
     if (loading) getAllMenuDispatch(storeId);
   }, [loading]);

@@ -19,9 +19,12 @@ export const menuSlice = createSlice({
     },
     setMenu: (state, action: PayloadAction<number>) => {
       state.menu = state.menus.filter((m) => m.menu_id === action.payload)[0];
+    },
+    setMenuWithNULL: (state) => {
+      state.menu = null;
     }
   }
 });
 
-export const { setMenus, setMenu } = menuSlice.actions;
+export const { setMenus, setMenu, setMenuWithNULL } = menuSlice.actions;
 export default menuSlice.reducer;

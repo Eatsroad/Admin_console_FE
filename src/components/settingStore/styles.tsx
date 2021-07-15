@@ -8,7 +8,6 @@ export const Container = styled.div`
   height: 100%;
 `;
 export const Wrapper = styled.div`
-
   padding: 20px 20px 0 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20%, auto));

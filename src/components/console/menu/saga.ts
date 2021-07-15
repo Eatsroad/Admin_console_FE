@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import {call, put, takeLatest } from 'redux-saga/effects'
 import { menuAPI } from '../../../api'
 import { CreateMenuData, CreateMenuResponse, MenuInfoResponse, UpdataCategoryData } from '../../common/type';
-import { setMenus } from './slice';
+import { setMenu, setMenus } from './slice';
 
 
 function* getAllMenuSaga(action: {
@@ -78,21 +78,13 @@ function* updataMenuSaga(action: {
       
       if (response.status === StatusCodes.OK) {
         yield put(setMenus(response.data));
+        yield put(setMenu(action.payload.menuId));
       }
     }
   } catch (e) {
 
   }
 };
-function* setMenuSaga(action: {
-  type: string;
-  payload: {
-    menuId: number,
-  }
-}) {
-  
-}
-
 
 export function* menuSaga(): Generator {
   yield takeLatest("/menu/updateMenuSaga", updataMenuSaga);
