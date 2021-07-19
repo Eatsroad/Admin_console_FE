@@ -5,11 +5,15 @@ import {
   CreateCategoryResponse, 
   CreateMenuData, 
   CreateMenuResponse, 
+  CreateOptionGroupData, 
   CreateStoreData, 
   CreateStoreResponse, 
   MenuInfoResponse, 
+  OptionGroupInfoResponse, 
+  UpdataOptionInOptionGroup, 
   UpdateCategoryData, 
   UpdateCategoryMenu, 
+  UpdateOptionGroupinMenuData, 
   UserInfoWithUserIdData, 
   UserInfoWithUserIdResponse 
 } from "./components/common/type";
@@ -109,6 +113,17 @@ export const menuAPI = {
       }
     });
     return result;
+  },
+  updateMenuOptionGroup: async (
+    id: number,
+    data: UpdateOptionGroupinMenuData
+  ): Promise<AxiosResponse> => {
+    const result = await api.patch(`menu/${id}/optiongroup`, data,  {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
   }
 }
 
@@ -156,15 +171,47 @@ export const categoryAPI = {
   }
 }
 
-// export const optoinGroupAPI = {
-//   createOptionGroup: async (
-
-//   ): Promise<AxiosResponse<>> => {
-
-//   },
-//   getAllOptionGroups: async (
-
-//   ): Promise<AxiosResponse<>> => {
-
-//   }
-// }
+export const optionGroupAPI = {
+  createOptionGroup: async (
+    data: CreateOptionGroupData
+  ): Promise<AxiosResponse<OptionGroupInfoResponse>> => {
+    const result: AxiosResponse<OptionGroupInfoResponse> = await api.post('optiongroup', data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  },
+  getAllOptionGroups: async (
+    store_id: number
+  ): Promise<AxiosResponse<OptionGroupInfoResponse[]>> => {
+    console.log('test');
+    const result = await api.get(`optiongroup?store_id=${store_id}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  },
+  deleteOptoinGroup: async (
+    store_id: number
+  ): Promise<AxiosResponse> => {
+    const result = await api.delete(`optiongroup/${store_id}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  },
+  updateOptionGroup: async (
+    option_group_id: number, 
+    data: UpdataOptionInOptionGroup
+  ): Promise<AxiosResponse> => {
+    const result = await api.patch(`optiongroup/option/${option_group_id}`, data,  {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    });
+    return result;
+  }
+}

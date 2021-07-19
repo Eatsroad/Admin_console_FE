@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import {call, put, takeLatest } from 'redux-saga/effects'
 import { menuAPI } from '../../../api'
-import { CreateMenuData, CreateMenuResponse, MenuInfoResponse, UpdateCategoryData } from '../../common/type';
+import { CreateMenuData, CreateMenuResponse, MenuInfoResponse, UpdateCategoryData, UpdateOptionGroupinMenuData } from '../../common/type';
 import { setMenu, setMenus } from './slice';
 
 
@@ -63,7 +63,7 @@ function* deleteMenuSaga(action: {
 
   }
 };
-function* updataMenuSaga(action: {
+function* updataCategoryInMenuSaga(action: {
   type: string;
   payload: {
     menuId: number,
@@ -85,9 +85,34 @@ function* updataMenuSaga(action: {
 
   }
 };
+function* updataOptionGroupInMenuSaga(action: {
+  type: string;
+  payload: {
+    id: number,
+    data: UpdateOptionGroupinMenuData
+  }
+}) {
+  console.log(action.payload.data);
+  const storeId = localStorage.getItem('storeId')!;
+  try {
+    const response: AxiosResponse = yield call(menuAPI.updateMenuOptionGroup, action.payload.id, action.payload.data);
+    if (response.status === StatusCodes.OK) {
+      const response: AxiosResponse<MenuInfoResponse[]> = yield call(menuAPI.getAllMenu, storeId);
+      
+      if (response.status === StatusCodes.OK) {
+        yield put(setMenus(response.data));
+        yield put(setMenu(action.payload.id));
+      }
+    }
+  } catch (e) {
+
+  }
+};
+
 
 export function* menuSaga(): Generator {
-  yield takeLatest("/menu/updateMenuSaga", updataMenuSaga);
+  yield takeLatest("/menu/updataCategoryInMenuSaga", updataCategoryInMenuSaga);
+  yield takeLatest("/menu/updataOptionGroupInMenuSaga", updataOptionGroupInMenuSaga);
   yield takeLatest("/menu/deleteMenuSaga", deleteMenuSaga);
   yield takeLatest("/menu/createMenuSaga", createMenuSaga);
   yield takeLatest("/menu/getAllMenuSaga", getAllMenuSaga);

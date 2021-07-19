@@ -95,18 +95,23 @@ export interface UpdateCategoryData {
 export interface UpdateCategoryMenu {
   menus: number[];
 }
+export interface UpdateOptionGroupinMenuData {
+  optionGroups: number[];
+}
 export interface OptionGroupInfoResponse {
   option_group_id : number;
   name: string;
   description:string;
   state: string;
   option_id: OptionPreviewInfo[];
+  menus: MenuPreviewInfo[];
 }
 export interface CreateOptionGroupData {
   name: string;
   description: string;
   state: string;
   option_id: number[];
+  store_id: number;
 }
 export interface CreateOptionData {
   option_group_id: number[];
@@ -120,4 +125,7 @@ export interface OptionInfoResponse {
   name: string;
   price: number;
   state: string;
+}
+export interface UpdataOptionInOptionGroup {
+  option_id: number[];
 }

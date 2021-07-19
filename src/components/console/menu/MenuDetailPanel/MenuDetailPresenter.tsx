@@ -1,6 +1,6 @@
 import React from 'react';
 import CategoryConnectionContainer from '../../../common/connectionList/category/CategoryConnectionContainer';
-import Tags from '../../../common/tag/Tags';
+import OptionGroupConnectionContainer from '../../../common/connectionList/optionGroup/OptionGroupConnectionContainer';
 import { MenuInfoResponse } from '../../../common/type';
 import { addCommaPrice } from '../../../common/utils/addCommaPrice';
 import { 
@@ -33,8 +33,10 @@ const MenuDetailPresenter = ({
       />
     </MenuDetailCategory>
     <MenuDetailOptionGroup>
-      옵션 그룹
-      <Tags title={""} list={menu.optionGroups}/>
+      <OptionGroupConnectionContainer
+        optionGroups={menu.optionGroups}
+        id={menu.menu_id}
+      />
     </MenuDetailOptionGroup>
     <MenuDetailState>
       메뉴 상태

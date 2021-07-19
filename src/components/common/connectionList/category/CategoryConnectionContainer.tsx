@@ -21,6 +21,7 @@ const CategoryConnectionContainer = ({
     list = list.filter((i) => i !== catoegoryId);
     return list; 
   }
+  
   const dispatch = useDispatch();
 
   const disconnect = async (item: any) => {
@@ -28,7 +29,7 @@ const CategoryConnectionContainer = ({
       const data: UpdateCategoryData = {
         categories: removeCategoryId(item.category_id)
       };
-      dispatch({type: "/menu/updateMenuSaga", payload: {menuId, data}});
+      dispatch({type: "/menu/updataCategoryInMenuSaga", payload: {menuId, data}});
     } catch (e) { console.log(e) }
 
   }
@@ -37,7 +38,7 @@ const CategoryConnectionContainer = ({
       const data: UpdateCategoryData = {
         categories: [item.category_id, ...prevCategoryId()]
       };
-      dispatch({type: "/menu/updateMenuSaga", payload: {menuId, data}});
+      dispatch({type: "/menu/updataCategoryInMenuSaga", payload: {menuId, data}});
     } catch (e) { console.log(e) }
   }
 

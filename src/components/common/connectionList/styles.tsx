@@ -52,3 +52,4 @@ export const ItemState = styled.button`
 
 
 export const CategoryConnectionContainer = styled.div``;
+export const OptionGroupConnectionContainer = styled.div``;
