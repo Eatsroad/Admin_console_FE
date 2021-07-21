@@ -8,9 +8,7 @@ import { setOptionGropup, setOptionGroups } from "./slice";
 function* getAllOptionGroupSaga(action: {
   type: string;
   payload: {}
-}
-) {
-  console.log("dd");
+}) {
   const storeId = localStorage.getItem('storeId')!; 
   try {
     const response: AxiosResponse<OptionGroupInfoResponse[]> = yield call(optionGroupAPI.getAllOptionGroups, parseInt(storeId));

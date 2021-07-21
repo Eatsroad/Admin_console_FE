@@ -2,7 +2,13 @@ import React from 'react';
 import Category from '../../console/category/Category/Category';
 import Menu from "../../console/menu/Menu/Menu";
 import OptionGroup from '../../console/optionGroup/OptionGroup/OptionGroupContainer';
-import { CategoryInfoResponse, MenuInfoResponse, OptionGroupInfoResponse } from "../type";
+import Option from '../../console/option/Option/OptionContainer';
+import { 
+  CategoryInfoResponse, 
+  MenuInfoResponse, 
+  OptionGroupInfoResponse, 
+  OptionInfoResponse 
+} from "../type";
 
 export interface ItemClass {
   getComponenet: (data: any, setId: (id: number) => void, index: number) => JSX.Element;
@@ -51,6 +57,24 @@ export class OptionGroupClass implements ItemClass {
       setId(id);
     }
     return <OptionGroup data={data} onClick={setTest} key={index}/>
+  }
+  getId = () => {
+    return this.id;
+  }
+  id: number
+};
+
+export class OptionClass implements ItemClass {
+  constructor() {
+    this.id = 0;
+  }
+  getComponenet = (data: OptionInfoResponse, setId: (id: number) => void, index: number): JSX.Element => {
+    const setTest = (id: number) => {
+      this.id  = id;
+      setId(id);
+      console.log(this.id);
+    }
+    return <Option data={data} onClick={setTest} key={index}/>
   }
   getId = () => {
     return this.id;

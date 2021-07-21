@@ -210,7 +210,7 @@ export const optionGroupAPI = {
     option_group_id: number, 
     data: UpdateOptionInOptionGroup
   ): Promise<AxiosResponse> => {
-    const result = await api.patch(`optiongroup/option/${option_group_id}`, data,  {
+    const result = await api.patch(`optiongroup/${option_group_id}/option`, data,  {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
       }
@@ -221,7 +221,7 @@ export const optionGroupAPI = {
     option_group_id: number,
     data: UpdateMenuInOptionGroupData
   ): Promise<AxiosResponse> => {
-    const result = await api.patch(`/optionGroup/${option_group_id}/menu`, data, {
+    const result = await api.patch(`optionGroup/${option_group_id}/menu`, data, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
       }
@@ -234,7 +234,7 @@ export const optionAPI = {
   createOption: async (
     data: CreateOptionData
   ): Promise<AxiosResponse> => {
-    const result = await api.post('/option/', data, {
+    const result = await api.post('option', data, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
       }
@@ -244,7 +244,7 @@ export const optionAPI = {
   deleteOption: async (
     optionId: number
   ): Promise<AxiosResponse> => {
-    const result = await api.delete(`/option/${optionId}`, {
+    const result = await api.delete(`option/${optionId}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
       }
@@ -255,7 +255,7 @@ export const optionAPI = {
     optionId: number,
     data: UpdateOptionGroupInOption
   ): Promise<AxiosResponse> => {
-    const result = await api.patch(`/option/${optionId}/optoinGroup`, data, {
+    const result = await api.patch(`option/${optionId}/optiongroup`, data, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
       }
@@ -265,7 +265,7 @@ export const optionAPI = {
   getAllOption: async (
     storeId: number
   ): Promise<AxiosResponse> => {
-    const result = await api.get(`/option?store_id=${storeId}`, {
+    const result = await api.get(`option?store_id=${storeId}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
       }

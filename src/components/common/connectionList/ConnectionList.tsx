@@ -6,7 +6,6 @@ import {
   ItemContainer, 
   ItemInfo, 
   ItemName, 
-  ItemPrice, 
   ItemState, 
   Title, 
   Wrapper 
@@ -44,7 +43,6 @@ const ConnectionList = ({
                   <ItemState onClick={() => connection(item)}>{!options.connection ? "연결하기" : "연결해제"}</ItemState>
                   <ItemInfo>
                     <ItemName>{item.name}</ItemName>
-                    { options.price && <ItemPrice>{item.price}</ItemPrice> }
                   </ItemInfo>
                 </Item>
               ))

@@ -122,6 +122,10 @@ export interface UpdateMenuInOptionGroupData {
 export interface UpdateOptionInOptionGroup {
   option_id: number[];
 }
+export interface OptionGroupPreviewInfo {
+  name: string;
+  option_group_id: number;
+};
 
 //option
 export interface OptionPreviewInfo {
@@ -129,10 +133,10 @@ export interface OptionPreviewInfo {
   option_id: number;
 }
 export interface CreateOptionData {
-  option_group_id: number[];
   name: string;
   price: number;   
   state: string;
+  store_id: number;
 }
 export interface OptionInfoResponse {
   option_id: number;
@@ -144,10 +148,7 @@ export interface OptionInfoResponse {
 export interface UpdateOptionGroupInOption {
   option_group_id: number[];
 }
-export interface OptionGroupPreviewInfo {
-  name: string;
-  option_group_id: number;
-};
+
 export interface OptionPreviewInfo {
   name: string;
   option_id: number;

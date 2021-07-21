@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import React, { useEffect, useState } from 'react';
 import GetAllConnectionPresenter from './GetAllConnectionPresenter';
-import { categoryAPI, menuAPI, optionGroupAPI } from '../../../../api';
+import { categoryAPI, menuAPI, optionAPI, optionGroupAPI } from '../../../../api';
 import { CategoryPreviewInfo, MenuPreviewInfo, OptionGroupPreviewInfo, OptionPreviewInfo } from '../../type';
 
 interface Props {
@@ -43,7 +43,7 @@ const GetAllConnectionContainer = ({
       } else if (mode === 3) {
         getAllOptionGroup();
       } else if (mode === 4) {
-
+        getAllOption();
       }
     }
   }
@@ -79,6 +79,15 @@ const GetAllConnectionContainer = ({
     } catch (e) {
       console.log(e);
     }
+  }
+  const getAllOption = async () => {
+    try {
+      const response = await optionAPI.getAllOption(parseInt(storeId));
+
+      if (response.status === StatusCodes.OK) {
+        setList(response.data);
+      }
+    } catch (e) { console.log(e) }
   }
   
   useEffect(() => {

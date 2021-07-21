@@ -13,11 +13,13 @@ import { ConsoleSubRouter, Container, Content } from './styles';
 import { AxiosResponse } from 'axios';
 import { StatusCodes } from "http-status-codes";
 import { CreateStoreResponse } from '../../components/common/type';
+import ConsoleOption from '../../components/console/option';
 
 const SwitchComponent = (index: number, storeId: string): JSX.Element => {
   if (index === 0) return <ConsoleMenu storeId={storeId}/>
   if (index === 1) return <ConsoleCategory storeId={storeId}/>
   if (index === 2) return <ConsoleOptionGroup/>
+  if (index === 3) return <ConsoleOption/>
   return <></>
 }
 

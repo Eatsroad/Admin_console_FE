@@ -7,9 +7,11 @@ import { categorySaga } from '../components/console/category/saga';
 import categorySlice from '../components/console/category/slice';
 import optionGroupSlice from '../components/console/optionGroup/slice';
 import { optionGroupSaga } from '../components/console/optionGroup/saga';
+import optionSlice from '../components/console/option/slice';
+import { optionSaga } from '../components/console/option/saga';
 
 function* rootSaga() {
-  yield all([ menuSaga(), categorySaga(), optionGroupSaga() ]);
+  yield all([ menuSaga(), categorySaga(), optionGroupSaga(), optionSaga() ]);
 };
 
 const sagaMiddleware = createSagaMiddleware();
@@ -19,6 +21,7 @@ export const store = configureStore({
     menuSlice,
     categorySlice,
     optionGroupSlice,
+    optionSlice,
   },
   middleware: [sagaMiddleware]
 });

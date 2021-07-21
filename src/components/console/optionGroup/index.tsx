@@ -16,7 +16,6 @@ const ConsoleOptionGroup = ():JSX.Element => {
   }
 
   const getAllOptionGroupDispatch = () => {
-    console.log("asdf");
     dispatch( { type: '/optionGroup/getAllOptionGroupSaga' , payload: {}} );
     setLoading(!loading);
   }

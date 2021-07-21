@@ -36,6 +36,7 @@ const MenuDetailPresenter = ({
       <OptionGroupConnectionContainer
         optionGroups={menu.optionGroups}
         id={menu.menu_id}
+        mode={1}
       />
     </MenuDetailOptionGroup>
     <MenuDetailState>

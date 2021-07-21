@@ -12,6 +12,6 @@ export const ConsoleRouteList: ConsoleRouteListProps[] = [
     name: "옵션그룹",
   },
   {
-    name: '대시보드'
+    name: '옵션 '
   }
 ];

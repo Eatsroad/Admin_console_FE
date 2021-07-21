@@ -13,7 +13,6 @@ const OptionGroupListContainer = ({
   const { optionGroups } = useSelector((state: RootState) => ({
     optionGroups: state.optionGroupSlice.optionGroups,
   }));
-  console.log(optionGroups);
   const dispatch = useDispatch();
 
   const selectOptionGroup = (optionGroupId: number) => {
