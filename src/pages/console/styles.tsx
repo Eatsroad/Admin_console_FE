@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`  
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 `;
 export const Content = styled.div`
+  width: 100%;
+  height: 100%;
   margin-top: 50px;
-  display: flex;
+  background-color: #EDEDED;
 `;
 export const ConsoleSubRouter = styled.div`
-  width: 100%;
   margin-left: 150px;
-  padding: 20px;
 `;
