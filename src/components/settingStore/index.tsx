@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { userApi } from '../../api';
 import { StorePreviewInfo, UserInfoWithUserIdData, UserInfoWithUserIdResponse } from '../common/type';
 import CreateStoreBox from './CreateStoreBox';
-import StoreBox from './StoreBax';
+import StoreBox from './StoreBox';
 import { Container, Wrapper } from './styles';
 
 const SelectStore = (): JSX.Element => {

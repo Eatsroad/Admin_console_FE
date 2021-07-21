@@ -1,5 +1,4 @@
 import React from 'react';
-import { optionGroupAPI } from '../../../../api';
 import Tags from '../../../common/tag/Tags';
 import { OptionInfoResponse } from '../../../common/type';
 import { addCommaPrice } from '../../../common/utils/addCommaPrice';

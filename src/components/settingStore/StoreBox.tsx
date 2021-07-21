@@ -1,4 +1,3 @@
-import { lookup } from 'dns';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { StoreBoxContainer, StoreImg, StoreName } from './styles';
