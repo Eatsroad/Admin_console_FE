@@ -2,7 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 import React, { useEffect, useState } from 'react';
 import GetAllConnectionPresenter from './GetAllConnectionPresenter';
 import { categoryAPI, menuAPI, optionGroupAPI } from '../../../../api';
-import { CategoryPreviewInfo, MenuPreviewInfo, OptionGroupPreviewInfo } from '../../type';
+import { CategoryPreviewInfo, MenuPreviewInfo, OptionGroupPreviewInfo, OptionPreviewInfo } from '../../type';
 
 interface Props {
   mode: number,
@@ -17,7 +17,7 @@ const GetAllConnectionContainer = ({
   connect,
   id,
 }: Props): JSX.Element => {
-  const [list, setList] = useState<CategoryPreviewInfo[] | OptionGroupPreviewInfo[] | MenuPreviewInfo[]>([]);
+  const [list, setList] = useState<CategoryPreviewInfo[] | OptionGroupPreviewInfo[] | MenuPreviewInfo[] | OptionPreviewInfo[]>([]);
   const [state, setState] = useState<boolean>(false);
   const [itemId, setItemId] = useState<number>(id);
   const storeId = localStorage.getItem('storeId')!;
@@ -42,6 +42,8 @@ const GetAllConnectionContainer = ({
         getAllMenu();
       } else if (mode === 3) {
         getAllOptionGroup();
+      } else if (mode === 4) {
+
       }
     }
   }

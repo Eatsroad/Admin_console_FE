@@ -1,20 +1,18 @@
+//user
 export interface UserInfoWithUserIdData {
   userId: string;
 }
-export interface StorePreviewInfo {
-  name: string;
-  store_id: number;
-}
-export interface MenuPreviewInfo {
-  name: string;
-  menu_id: number;
-};
 export interface UserInfoWithUserIdResponse  {
   user_id: number;
   name: string;
   stores: StorePreviewInfo[];
 }
 
+//store
+export interface StorePreviewInfo {
+  name: string;
+  store_id: number;
+}
 export interface CreateStoreData {
   name: string;
   address: string;
@@ -29,6 +27,11 @@ export interface CreateStoreResponse {
   tables: number;
 }
 
+//menu
+export interface MenuPreviewInfo {
+  name: string;
+  menu_id: number;
+};
 export interface CreateMenuData {
   name: string;
   price: number;
@@ -53,17 +56,14 @@ export interface MenuInfoResponse {
   optionGroups: OptionGroupPreviewInfo[];
   // enable_time: EnableTime;
 }
+export interface UpdateOptionGroupinMenuData {
+  optionGroups: number[];
+}
+
+//category
 export interface CategoryPreviewInfo {
   name: string;
   category_id: number;
-}
-export interface OptionGroupPreviewInfo {
-  name: string;
-  option_group_id: number;
-};
-export interface OptionPreviewInfo {
-  name: string;
-  option_group_id: number;
 }
 export interface CreateCategoryData {
   name: string;
@@ -95,8 +95,18 @@ export interface UpdateCategoryData {
 export interface UpdateCategoryMenu {
   menus: number[];
 }
-export interface UpdateOptionGroupinMenuData {
-  optionGroups: number[];
+
+//optionGroup
+export interface OptionGroupPreviewInfo {
+  name: string;
+  option_group_id: number;
+};
+export interface CreateOptionGroupData {
+  name: string;
+  description: string;
+  state: string;
+  option_id: number[];
+  store_id: number;
 }
 export interface OptionGroupInfoResponse {
   option_group_id : number;
@@ -106,12 +116,17 @@ export interface OptionGroupInfoResponse {
   option_id: OptionPreviewInfo[];
   menus: MenuPreviewInfo[];
 }
-export interface CreateOptionGroupData {
-  name: string;
-  description: string;
-  state: string;
+export interface UpdateMenuInOptionGroupData {
+  menus: number[];
+}
+export interface UpdateOptionInOptionGroup {
   option_id: number[];
-  store_id: number;
+}
+
+//option
+export interface OptionPreviewInfo {
+  name: string;
+  option_id: number;
 }
 export interface CreateOptionData {
   option_group_id: number[];
@@ -126,6 +141,14 @@ export interface OptionInfoResponse {
   price: number;
   state: string;
 }
-export interface UpdataOptionInOptionGroup {
-  option_id: number[];
+export interface UpdateOptionGroupInOption {
+  option_group_id: number[];
+}
+export interface OptionGroupPreviewInfo {
+  name: string;
+  option_group_id: number;
+};
+export interface OptionPreviewInfo {
+  name: string;
+  option_id: number;
 }

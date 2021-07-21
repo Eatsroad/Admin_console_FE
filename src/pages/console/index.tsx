@@ -25,7 +25,7 @@ const ConsolePage = (): JSX.Element => {
   const { store_id } = useParams<any>();
   const [storeName, setStoreName] = useState<string>("");
   const [com, setCom] = useState<number>(0);
-
+  
   const getStoreInfo = async () => {
     try {
       const result: AxiosResponse<CreateStoreResponse> = await storeAPI.getStoreInfo(store_id);

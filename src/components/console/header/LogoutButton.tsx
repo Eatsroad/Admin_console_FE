@@ -9,6 +9,7 @@ const LogoutButton = (): JSX.Element => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('userName');
     localStorage.removeItem('userId');
+    localStorage.removeItem('storeId');
     history.replace("/");
   };
 
