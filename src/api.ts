@@ -45,7 +45,7 @@ export const userApi = {
   ): Promise<AxiosResponse<UserInfoWithUserIdResponse>> => {
     const result = await api.get(`user/${data.userId}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
       }
     });
     return result;
@@ -81,7 +81,8 @@ export const menuAPI = {
   ): Promise<AxiosResponse<CreateMenuResponse>> => {
     const result = await api.post("menu/", data, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -91,7 +92,8 @@ export const menuAPI = {
   ) :Promise<AxiosResponse> => {
     const result = await api.delete(`menu/${menuId}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -101,7 +103,8 @@ export const menuAPI = {
   ): Promise<AxiosResponse<MenuInfoResponse[]>> => {
     const result = await api.get(`menu/?store_id=${storeId}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -112,7 +115,8 @@ export const menuAPI = {
   ): Promise<AxiosResponse> => {
     const result = await api.patch(`menu/${menuId}/category`, data,  {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -123,7 +127,8 @@ export const menuAPI = {
   ): Promise<AxiosResponse> => {
     const result = await api.patch(`menu/${id}/optiongroup`, data,  {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -136,7 +141,8 @@ export const categoryAPI = {
   ): Promise<AxiosResponse<CreateCategoryResponse>> => {
     const result = await api.post("category", data, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -146,7 +152,8 @@ export const categoryAPI = {
   ): Promise<AxiosResponse<CategoryInfoResponse[]>> => {
     const result = await api.get(`category?storeId=${storeId}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -156,7 +163,8 @@ export const categoryAPI = {
   ): Promise<AxiosResponse> => {
     const result = await api.delete(`category/${categoryId}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -167,7 +175,8 @@ export const categoryAPI = {
   ): Promise<AxiosResponse> => {
     const result = await api.put(`category/${categoryId}/menus`, data, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -180,7 +189,8 @@ export const optionGroupAPI = {
   ): Promise<AxiosResponse<OptionGroupInfoResponse>> => {
     const result: AxiosResponse<OptionGroupInfoResponse> = await api.post('optiongroup', data, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -191,7 +201,8 @@ export const optionGroupAPI = {
     console.log('test');
     const result = await api.get(`optiongroup?store_id=${store_id}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -201,7 +212,8 @@ export const optionGroupAPI = {
   ): Promise<AxiosResponse> => {
     const result = await api.delete(`optiongroup/${store_id}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -212,7 +224,8 @@ export const optionGroupAPI = {
   ): Promise<AxiosResponse> => {
     const result = await api.patch(`optiongroup/${option_group_id}/option`, data,  {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -223,7 +236,8 @@ export const optionGroupAPI = {
   ): Promise<AxiosResponse> => {
     const result = await api.patch(`optionGroup/${option_group_id}/menu`, data, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -236,7 +250,8 @@ export const optionAPI = {
   ): Promise<AxiosResponse> => {
     const result = await api.post('option', data, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -246,7 +261,8 @@ export const optionAPI = {
   ): Promise<AxiosResponse> => {
     const result = await api.delete(`option/${optionId}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -257,7 +273,8 @@ export const optionAPI = {
   ): Promise<AxiosResponse> => {
     const result = await api.patch(`option/${optionId}/optiongroup`, data, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
@@ -267,7 +284,8 @@ export const optionAPI = {
   ): Promise<AxiosResponse> => {
     const result = await api.get(`option?store_id=${storeId}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
