@@ -68,7 +68,8 @@ export const storeAPI = {
   ): Promise<AxiosResponse<CreateStoreResponse>> => {
     const result = await api.get(`store/${storeId}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'store_id': `${localStorage.getItem('storeId')}`
       }
     });
     return result;
