@@ -58,8 +58,8 @@ const CreateStore = (): JSX.Element => {
         const result = await storeAPI.createStore(data);
 
         if (result.status === StatusCodes.CREATED) {
-          console.log(result.data);
-          history.replace(`/console/?store_id=${result.data.store_id}`);
+          localStorage.setItem('storeId', result.data.store_id.toString());
+          history.replace(`/console/${result.data.store_id}`);
         }
       } catch (e) {
         console.log(e);

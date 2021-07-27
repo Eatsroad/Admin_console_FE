@@ -53,7 +53,6 @@ const CreateCategoryContainer = (): JSX.Element => {
       name: name,
       description: description,
       state: "주문 가능",
-      store_id: parseInt(localStorage.getItem('storeId')!),
       menus: [],
       role: "ETC"
     }

@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { storeAPI } from '../../api';
 import { 
   ConsoleCategory,
@@ -15,22 +14,21 @@ import { StatusCodes } from "http-status-codes";
 import { CreateStoreResponse } from '../../components/common/type';
 import ConsoleOption from '../../components/console/option';
 
-const SwitchComponent = (index: number, storeId: string): JSX.Element => {
-  if (index === 0) return <ConsoleMenu storeId={storeId}/>
-  if (index === 1) return <ConsoleCategory storeId={storeId}/>
+const SwitchComponent = (index: number): JSX.Element => {
+  if (index === 0) return <ConsoleMenu/>
+  if (index === 1) return <ConsoleCategory/>
   if (index === 2) return <ConsoleOptionGroup/>
   if (index === 3) return <ConsoleOption/>
   return <></>
 }
 
 const ConsolePage = (): JSX.Element => {
-  const { store_id } = useParams<any>();
   const [storeName, setStoreName] = useState<string>("");
   const [com, setCom] = useState<number>(0);
   
   const getStoreInfo = async () => {
     try {
-      const result: AxiosResponse<CreateStoreResponse> = await storeAPI.getStoreInfo(store_id);
+      const result: AxiosResponse<CreateStoreResponse> = await storeAPI.getStoreInfo(localStorage.getItem('storeId')!);
 
       if (result.status === StatusCodes.OK) {
         setStoreName(result.data.name);
@@ -43,7 +41,7 @@ const ConsolePage = (): JSX.Element => {
   useEffect(() => {
     getStoreInfo();
   }, []);
-  console.log(storeName);
+
   return (
     <Container>
       <ConsoleHeader/>
@@ -54,7 +52,7 @@ const ConsolePage = (): JSX.Element => {
           currentIndex={com}
         />
         <ConsoleSubRouter>
-          {SwitchComponent(com, store_id)}
+          {SwitchComponent(com)}
         </ConsoleSubRouter>
       </Content>
     </Container>

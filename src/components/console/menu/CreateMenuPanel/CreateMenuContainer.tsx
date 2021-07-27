@@ -42,7 +42,6 @@ const CreateMenuContainer = (): JSX.Element => {
       price: parseInt(price),
       description: description,
       state: "주문 가능",
-      store_id: parseInt(localStorage.getItem('storeId')!),
     }
     dispatch({ type: "/menu/createMenuSaga", payload: { data }});
     setName("");

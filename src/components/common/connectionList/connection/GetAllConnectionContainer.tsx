@@ -27,7 +27,6 @@ const GetAllConnectionContainer = ({
     for (let i = 0; i < existList.length; i++) {
       result = result.filter((k) => k.name !== existList[i].name);
     }
-    console.log(list, result, existList);
     return result;
   }
   const onClick = () => {

@@ -26,7 +26,6 @@ const OptionConnectionContainer = ({
   const dispatch = useDispatch();
 
   const disconnect = async (item: any) => {
-    console.log(item);
     try {
       const data: UpdateOptionInOptionGroup = {
         option_id: removeItemId(item.option_id)
@@ -36,7 +35,6 @@ const OptionConnectionContainer = ({
 
   }
   const connect = async (item: any) => {
-    console.log(item);
     try {
       const data: UpdateOptionInOptionGroup = {
         option_id: [item.option_id, ...prevItemId()]

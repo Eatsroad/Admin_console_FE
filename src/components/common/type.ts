@@ -11,7 +11,7 @@ export interface UserInfoWithUserIdResponse  {
 //store
 export interface StorePreviewInfo {
   name: string;
-  store_id: number;
+  store_id: string;
 }
 export interface CreateStoreData {
   name: string;
@@ -37,7 +37,6 @@ export interface CreateMenuData {
   price: number;
   description: string;
   state: string;
-  store_id: number;
 }
 export interface CreateMenuResponse {
   menu_id: number;
@@ -71,7 +70,6 @@ export interface CreateCategoryData {
   state: string;
   menus: number[];
   role: string;
-  store_id: number;
 }
 export interface CreateCategoryResponse {
   name: string;
@@ -106,7 +104,6 @@ export interface CreateOptionGroupData {
   description: string;
   state: string;
   option_id: number[];
-  store_id: number;
 }
 export interface OptionGroupInfoResponse {
   option_group_id : number;
@@ -136,7 +133,6 @@ export interface CreateOptionData {
   name: string;
   price: number;   
   state: string;
-  store_id: number;
 }
 export interface OptionInfoResponse {
   option_id: number;

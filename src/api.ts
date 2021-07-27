@@ -43,7 +43,7 @@ export const userApi = {
   getUserInfoWithUserId: async (
     data: UserInfoWithUserIdData
   ): Promise<AxiosResponse<UserInfoWithUserIdResponse>> => {
-    const result = await api.get(`user/${data.userId}`, {
+    const result = await api.get(`user`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
       }
@@ -64,7 +64,7 @@ export const storeAPI = {
     return result;
   },
   getStoreInfo: async (
-    storeId: number
+    storeId: string
   ): Promise<AxiosResponse<CreateStoreResponse>> => {
     const result = await api.get(`store/${storeId}`, {
       headers: {
@@ -80,7 +80,7 @@ export const menuAPI = {
   createMenu: async (
     data: CreateMenuData
   ): Promise<AxiosResponse<CreateMenuResponse>> => {
-    const result = await api.post("menu/", data, {
+    const result = await api.post("menu", data, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
         'store_id': `${localStorage.getItem('storeId')}`
@@ -102,7 +102,7 @@ export const menuAPI = {
   getAllMenu: async (
     storeId: string
   ): Promise<AxiosResponse<MenuInfoResponse[]>> => {
-    const result = await api.get(`menu/?store_id=${storeId}`, {
+    const result = await api.get(`menu`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
         'store_id': `${localStorage.getItem('storeId')}`
@@ -199,7 +199,6 @@ export const optionGroupAPI = {
   getAllOptionGroups: async (
     store_id: number
   ): Promise<AxiosResponse<OptionGroupInfoResponse[]>> => {
-    console.log('test');
     const result = await api.get(`optiongroup?store_id=${store_id}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,

@@ -53,7 +53,6 @@ const CreateOptionGroupPanelContainer = (): JSX.Element => {
       name: name,
       description: description,
       state: "주문 가능",
-      store_id: parseInt(localStorage.getItem('storeId')!),
       option_id: [],
     }
     dispatch( { type:'/optionGroup/createoOptionGroupSaga', payload: { data } } );

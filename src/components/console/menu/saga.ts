@@ -92,7 +92,6 @@ function* updataOptionGroupInMenuSaga(action: {
     data: UpdateOptionGroupinMenuData
   }
 }) {
-  console.log(action.payload.data);
   const storeId = localStorage.getItem('storeId')!;
   try {
     const response: AxiosResponse = yield call(menuAPI.updateMenuOptionGroup, action.payload.id, action.payload.data);
