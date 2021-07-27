@@ -4,14 +4,14 @@ import { StoreBoxContainer, StoreImg, StoreName } from './styles';
 
 interface Props {
   storeName: string;
-  storeId: number;
+  storeId: string;
 }
 const StoreBox = ({storeName, storeId}: Props): JSX.Element => {
   const history = useHistory();
 
   const onClick = () => {
     localStorage.setItem("storeId", storeId.toString());
-    history.push(`/console/${storeId}`);
+    history.push(`/console`);
   }
   return (
     <StoreBoxContainer onClick={onClick}>

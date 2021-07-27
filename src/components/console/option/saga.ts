@@ -4,10 +4,11 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { optionAPI } from "../../../api";
 import { CreateOptionData, OptionInfoResponse, UpdateOptionGroupInOption } from "../../common/type";
 import { setOption, setOptions } from "./slice";
-const storeId = localStorage.getItem('storeId')!;
+
 
 function* getAllOptionSaga() {
   try {
+    const storeId = localStorage.getItem('storeId')!;
     const response: AxiosResponse<OptionInfoResponse[]> = yield call(optionAPI.getAllOption, parseInt(storeId));
 
     if (response.status === StatusCodes.OK) {
@@ -23,6 +24,7 @@ function* createOptionSaga(action: {
   }
 }) {
   try {
+    const storeId = localStorage.getItem('storeId')!;
     const response: AxiosResponse = yield call(optionAPI.createOption, action.payload.data);
     
     if (response.status === StatusCodes.CREATED) {
@@ -40,6 +42,7 @@ function* deleteOptionSaga(action: {
   }
 }) {
   try {
+    const storeId = localStorage.getItem('storeId')!;
     const response: AxiosResponse = yield call(optionAPI.deleteOption, action.payload.option_id);
 
     if (response.status === StatusCodes.OK) {
@@ -59,6 +62,7 @@ function* updateOptionGroupInOption(action: {
   }
 }) {
   try {
+    const storeId = localStorage.getItem('storeId')!;
     const response: AxiosResponse = yield call(optionAPI.updateOptionGroupInOption, action.payload.id, action.payload.data);
 
     if (response.status === StatusCodes.OK) {

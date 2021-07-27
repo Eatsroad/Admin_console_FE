@@ -19,6 +19,7 @@ function* getAllCategorySaga(action: {
     console.log(e);
   };
 };
+
 function* createCategorySaga(action: {
   type: string;
   payload: {
@@ -73,7 +74,7 @@ function* updateCategoryMenuSaga(action: {
   }
 }) {
   const storeId = localStorage.getItem('storeId')!; 
-  console.log(action.payload.id);
+  
   try {
     const response: AxiosResponse = yield call(categoryAPI.updateCategoryMenu, action.payload.data, action.payload.id);
 

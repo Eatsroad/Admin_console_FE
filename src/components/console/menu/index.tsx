@@ -7,11 +7,7 @@ import CreateMenuContainer from './CreateMenuPanel/CreateMenuContainer';
 import MenuDetailContainer from './MenuDetailPanel/MenuDetailContainer';
 import MenuList from './MenuList/MenuListContainer';
 
-interface Props {
-  storeId: string;
-}
-
-const ConsoleMenu = ({storeId}: Props): JSX.Element => {
+const ConsoleMenu = (): JSX.Element => {
   const { menu } = useSelector((state: RootState) => ({
     menu: state.menuSlice.menu, 
   }));
@@ -20,8 +16,8 @@ const ConsoleMenu = ({storeId}: Props): JSX.Element => {
   
   const dispatch = useDispatch();
 
-  const getAllMenuDispatch = (storeId: string) => {
-    dispatch({type: "/menu/getAllMenuSaga", payload: { storeId }});
+  const getAllMenuDispatch = () => {
+    dispatch({type: "/menu/getAllMenuSaga", payload: { }});
     setLoading(!loading);
   };
   
@@ -33,7 +29,7 @@ const ConsoleMenu = ({storeId}: Props): JSX.Element => {
   };
 
   useEffect(() => {
-    if (loading) getAllMenuDispatch(storeId);
+    if (loading) getAllMenuDispatch();
   }, [loading]);
 
   if (loading) return <div>로딩중</div>  

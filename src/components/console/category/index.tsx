@@ -7,12 +7,7 @@ import CategoryDetailContainer from './CategoryDetailPanel/CategoryDetailContain
 import CategoryListContainer from './CategoryList/CategoryListContainer';
 import CreateCategoryContainer from './CreateCategoryPanel/CreateCateogoryContainer';
 
-interface Props {
-  storeId: string;
-}
-const ConsoleCategory = ({
-  storeId
-}: Props):JSX.Element => {
+const ConsoleCategory = ():JSX.Element => {
   const { category } = useSelector((state: RootState) => ({
     category: state.categorySlice.category,
   }))
@@ -21,8 +16,8 @@ const ConsoleCategory = ({
 
   const dispatch = useDispatch();
 
-  const getAllCategoryDispatch = (storeId: string) => {
-    dispatch( { type: "/category/getAllCategorySaga", payload: { storeId } } );
+  const getAllCategoryDispatch = () => {
+    dispatch( { type: "/category/getAllCategorySaga", payload: { } } );
     setLoading(!loading);
   }
   const switchComponent = (): JSX.Element => {
@@ -32,7 +27,7 @@ const ConsoleCategory = ({
   }
 
   useEffect(() => {
-    if (loading) getAllCategoryDispatch(storeId);
+    if (loading) getAllCategoryDispatch();
   }, [loading]);
 
   if (loading) return <div>로딩중</div>

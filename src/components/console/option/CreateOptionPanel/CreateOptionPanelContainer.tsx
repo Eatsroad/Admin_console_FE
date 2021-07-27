@@ -53,7 +53,6 @@ const CreateOptionContainer = (): JSX.Element => {
       name: name,
       price: parseInt(price),
       state: "주문 가능",
-      store_id: parseInt(localStorage.getItem('storeId')!),
     };
     dispatch( { type:'/option/createOptionSaga', payload: { data } } );
     setName("");

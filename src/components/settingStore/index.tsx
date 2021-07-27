@@ -22,6 +22,7 @@ const SelectStore = (): JSX.Element => {
       const response: AxiosResponse<UserInfoWithUserIdResponse> = await userApi.getUserInfoWithUserId(data);
 
       if (response.status === StatusCodes.OK) {
+        console.log(response.data)
         setStores(response.data.stores);
       }
       setLoading(false);

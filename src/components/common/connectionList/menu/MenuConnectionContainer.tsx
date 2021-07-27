@@ -14,7 +14,6 @@ const MenuConnectionContainer = ({
   id,
   mode
 }: ContainerProps): JSX.Element => {
-  console.log(id);
   const title = "메뉴"
   const prevMenuId = () => {
     let result: number[] = [];
