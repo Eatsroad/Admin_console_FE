@@ -21,6 +21,7 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   
   margin: auto;
+  padding: 0 20px 0 20px;
 `;
 export const HeaderLogoContainer = styled.div`
   

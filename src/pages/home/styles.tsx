@@ -5,6 +5,6 @@ export const HomeContainer = styled.div`
 `;
 export const HomeMainContent = styled.div`
   max-width: ${({ theme }) => theme.maxWidth};
-  margin: auto;
+  /* margin: auto; */
   margin-top: 50px;
 `;
