@@ -9,7 +9,6 @@ import {
   SummuryButton, 
   SummuryContainer, 
   SummuryWrapper, 
-  Test
 } from './styles';
 
 const Content:React.FC = () => {
